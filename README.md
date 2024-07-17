@@ -24,4 +24,4 @@ As a user I would like to take said PC and copy 10 times
 
 As a user I would like to remove said PC
 
-*I'm so sorry for the who has to mark all of this*
+*I'm so sorry for the TA who has to mark all of this*
