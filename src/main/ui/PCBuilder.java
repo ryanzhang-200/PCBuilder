@@ -241,7 +241,7 @@ public class PCBuilder {
                 returnCostSecondHalf();
                 int total = 0;
                 total += pcList.getSelectedComputer().costSingles() + pcList.getSelectedComputer().costsMultiples();
-                System.out.println(total);
+                System.out.println(total + "$");
                 break;
             case "n":
                 changeNamePC();
@@ -405,36 +405,46 @@ public class PCBuilder {
     //EFFECTS: returns part of the cost of an individual computer
     public void returnCostFirstHalf() {
         PC pc = pcList.getSelectedComputer();
-        System.out.println("Case Cost:" + pc.getCase().getCost());
-        System.out.println("Case Cost:" + pc.getCooler().getCost());
-        System.out.println("Case Cost:" + pc.getCPU().getCost());
+        if (pc.getCase() != null) {
+            System.out.println("Case Cost:" + pc.getCase().getCost());
+        }
+        if (pc.getCooler() != null) {
+            System.out.println("Cooler Cost:" + pc.getCooler().getCost());
+        }
+        if (pc.getCPU() != null) {
+            System.out.println("CPU Cost:" + pc.getCPU().getCost());
+        }
         int costGpuAdd = 0;
         for (int i = 0; i < pc.getGPU().size(); i++) {
             costGpuAdd += pc.getGPU().get(i).getCost();
         }
-        System.out.println("Case Cost:" + costGpuAdd);
+        System.out.println("GPU Cost:" + costGpuAdd);
         int costDesktopAdd = 0;
         for (int i = 0; i < pc.getMonitor().size(); i++) {
             costDesktopAdd += pc.getMonitor().get(i).getCost();
         }
-        System.out.println("Case Cost:" + costDesktopAdd);
+        System.out.println("Desktop Cost:" + costDesktopAdd);
     }
 
     //EFFECTS: returns the other half of the cost of an individual computer
     public void returnCostSecondHalf() {
         PC pc = pcList.getSelectedComputer();
-        System.out.println("Case Cost:" + pc.getMotherboard().getCost());
-        System.out.println("Case Cost:" + pc.getOperatingSystem().getCost());
+        if (pc.getMotherboard() != null) {
+            System.out.println("Motherboard Cost:" + pc.getMotherboard().getCost());
+        }
+        if (pc.getOperatingSystem() != null) {
+            System.out.println("Operating System Cost:" + pc.getOperatingSystem().getCost());
+        }
         int costRamAdd = 0;
         for (int i = 0; i < pc.getRAM().size(); i++) {
             costRamAdd += pc.getRAM().get(i).getCost();
         }
-        System.out.println("Case Cost:" + costRamAdd);
+        System.out.println("Memory Cost:" + costRamAdd);
         int costStorageAdd = 0;
         for (int i = 0; i < pc.getStorage().size(); i++) {
             costStorageAdd += pc.getStorage().get(i).getCost();
         }
-        System.out.println("Case Cost:" + costStorageAdd);
+        System.out.println("Storage Cost:" + costStorageAdd);
     }
 
     //MODIFIES: PC
@@ -442,7 +452,7 @@ public class PCBuilder {
     public void changeNamePC() {
         PC pc = pcList.getSelectedComputer();
         String name = null;
-        name = scanner.nextLine();
+        name = scanner.next();
         pc.namePC(name);
         System.out.println("PC's name has been changed to " + name + "!");
     }
