@@ -13,10 +13,15 @@ The purpose of this application will be to allow people to design custom PCs. Th
 
 ## User Stories 
 As a user I would like to create a list of PCs
+
 As a user I would like to add a PC to a list of PCs
+
 As a user I would like to view a list of PCs and be able to see the individual cost of each one
+
 As a user I would like to add an processor to a PC called "gaming PC"
+
 As a user I would like to take said PC and copy 10 times
+
 As a user I would like to remove said PC
 
 *I'm so sorry for the who has to mark all of this*
