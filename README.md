@@ -24,4 +24,8 @@ As a user I would like to take said PC and copy 10 times
 
 As a user I would like to remove said PC
 
+As a user I would like to save my list of PCs
+
+As a user I would like to be able to log in and access my previously worked on list of PCs
+
 *I'm so sorry for the TA who has to mark all of this*

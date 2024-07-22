@@ -11,19 +11,25 @@ import model.parts.OperatingSystem;
 import model.parts.PowerSupply;
 import model.parts.RAM;
 import model.parts.Storage;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 import model.PC;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class PCBuilder {
-
+    private static final String JSON_STORE = "./data/pclist.json";
     private PCLists pcList;
 
     private Scanner scanner;
     private boolean isPCBuilderRunning;
     private boolean isReviewing;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: creates an instance of the PCBuilder console ui application
     public PCBuilder() {
@@ -35,6 +41,8 @@ public class PCBuilder {
     public void init() {
         this.pcList = new PCLists();
         this.scanner = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         this.isPCBuilderRunning = true;
     }
 
@@ -71,6 +79,8 @@ public class PCBuilder {
         System.out.println("\tr -> remove a PC");
         System.out.println("\tc -> copy a PC");
         System.out.println("\tp -> purchase a PC");
+        System.out.println("\tz -> save list of PC");
+        System.out.println("\tx -> load up previously saved list of PC");
         System.out.println("\tq -> quit pc builder ap");
     }
 
@@ -101,6 +111,12 @@ public class PCBuilder {
             case "p":
                 purchasePC();
                 break;
+            case "x":
+                loadPC();
+                break;
+            case "z":
+                savePC();
+                break;
             case "q":
                 quitApplication();
                 break;
@@ -108,6 +124,29 @@ public class PCBuilder {
                 System.out.println("Invalid option inputted. Please try again.");
         }
         printDivider();
+    }
+
+    // EFFECTS: saves the PCList to file
+    private void savePC() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(pcList);
+            jsonWriter.close();
+            System.out.println("Saved list of PCs to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads PCList from file
+    private void loadPC() {
+        try {
+            pcList = jsonReader.read();
+            System.out.println("Loaded list of PCs from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
     //EFFECTS: prints out the name of each computer and given the cost of each computer

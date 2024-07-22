@@ -3,7 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PCLists {
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class PCLists implements Writable {
     
     private List<PC> pcList = new ArrayList<>();
     private PC selectedComputer;
@@ -89,5 +93,24 @@ public class PCLists {
         } else {
             return false;
         }
+    }
+
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("pcList", pcListToJson());
+        return json;
+    }
+    
+    // EFFECTS: returns PC in this PCList as a JSON array
+    private JSONArray pcListToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (PC t : pcList) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
     }
 }

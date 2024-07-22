@@ -2,10 +2,6 @@ package model;
 
 import model.parts.Case;
 import model.parts.Cooler;
-
-import java.util.List;
-import java.util.ArrayList;
-
 import model.parts.CPU;
 import model.parts.GPU;
 import model.parts.Monitor;
@@ -15,7 +11,15 @@ import model.parts.PowerSupply;
 import model.parts.RAM;
 import model.parts.Storage;
 
-public class PC {
+import java.util.List;
+import java.util.ArrayList;
+
+import org.json.JSONObject;
+import persistence.Writable;
+
+
+
+public class PC implements Writable {
     private String name;
     private Case box;
     private Cooler cooler;
@@ -452,5 +456,22 @@ public class PC {
     //EFFECTS: sets powersupply from PC to given powersupply
     public void setPowerSupply(PowerSupply pwrSupply) {
         this.pwrSupply = pwrSupply;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("case", box);
+        json.put("cooler", cooler);
+        json.put("cpu", processor);
+        json.put("gpu", graphicsCard);
+        json.put("monitor", monitor);
+        json.put("motherboard", motherboard);
+        json.put("operating system", system);
+        json.put("power supply", pwrSupply);
+        json.put("ram", memory);
+        json.put("storage", storage);
+        return json;
     }
 }

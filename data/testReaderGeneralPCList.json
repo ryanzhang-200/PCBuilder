@@ -1,0 +1,30 @@
+{
+    "pcList": [
+        {
+            "name": "pc1",
+            "case": " ",
+            "cooler" : " ",
+            "cpu" : " ",
+            "gpu" : [],
+            "monitor" : [],
+            "motherboard" : "",
+            "operating system" : "",
+            "power supply" : "",
+            "ram" : [],
+            "storage" : []
+        },
+        {
+            "name": "pc2",
+            "case": " ",
+            "cooler" : " ",
+            "cpu" : " ",
+            "gpu" : [],
+            "monitor" : [],
+            "motherboard" : "",
+            "operating system" : "",
+            "power supply" : "",
+            "ram" : [],
+            "storage" : []
+        }
+    ]
+}
