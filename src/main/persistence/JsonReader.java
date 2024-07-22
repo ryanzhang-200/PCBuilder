@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads PCList from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -30,7 +30,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads PCList from file and returns it;
     // throws IOException if an error occurs reading data from file
     public PCLists read() throws IOException {
         String jsonData = readFile(source);
@@ -49,15 +49,15 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses PCList from JSON object and returns it
     private PCLists parsePCLists(JSONObject jsonObject) {
-        PCLists wr = new PCLists();
-        addPCs(wr, jsonObject);
-        return wr;
+        PCLists pcList = new PCLists();
+        addPCs(pcList, jsonObject);
+        return pcList;
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
+    // MODIFIES: pcList
+    // EFFECTS: parses thingies from JSON object and adds them to PCList
     private void addPCs(PCLists pcList, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("pcList");
         for (Object json : jsonArray) {
@@ -66,8 +66,8 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // MODIFIES: pcList
+    // EFFECTS: parses thingy from JSON object and adds it to PCList
     private void addPC(PCLists pcList, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         PC pc = new PC(name);
