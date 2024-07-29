@@ -1,6 +1,6 @@
 package model.parts;
 
-public class GPU {
+public class GPU implements Parts {
     private int gpuPower;
     private String model;
     private int cost;

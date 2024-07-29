@@ -3,7 +3,7 @@ package model.parts;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Motherboard {
+public class Motherboard implements Parts {
 
     private String model;
     private int cost;

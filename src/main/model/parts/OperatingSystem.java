@@ -1,6 +1,6 @@
 package model.parts;
 
-public class OperatingSystem {
+public class OperatingSystem implements Parts {
 
     private String systemName;
     private int cost;

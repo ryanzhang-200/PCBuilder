@@ -1,6 +1,6 @@
 package model.parts;
 
-public class Monitor {
+public class Monitor implements Parts {
 
     private String model;
     private int cost;

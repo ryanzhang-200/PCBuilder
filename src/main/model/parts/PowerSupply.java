@@ -1,6 +1,6 @@
 package model.parts;
 
-public class PowerSupply {
+public class PowerSupply implements Parts {
 
     private String model;
     private int cost;

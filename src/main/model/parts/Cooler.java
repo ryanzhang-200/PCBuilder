@@ -1,6 +1,6 @@
 package model.parts;
 
-public class Cooler {
+public class Cooler implements Parts {
 
     private int cost;
     private String model;

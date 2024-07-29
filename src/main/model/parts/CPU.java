@@ -1,6 +1,6 @@
 package model.parts;
 
-public class CPU {
+public class CPU implements Parts {
 
     private double processingPower;
     private double processingPowerBoost;

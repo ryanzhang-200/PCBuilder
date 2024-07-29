@@ -1,6 +1,6 @@
 package model.parts;
 
-public class Case {
+public class Case implements Parts {
     private String model;
     private int cost;
     private int height;

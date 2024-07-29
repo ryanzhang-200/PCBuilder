@@ -1,6 +1,6 @@
 package model.parts;
 
-public class Storage {
+public class Storage implements Parts {
     private int capacity;
     private int speed;
     private Boolean ssd;

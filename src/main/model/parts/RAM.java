@@ -1,6 +1,6 @@
 package model.parts;
 
-public class RAM {
+public class RAM implements Parts {
 
     private int memory;
     private int speed;
