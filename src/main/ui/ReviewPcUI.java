@@ -21,11 +21,25 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
+import model.parts.Case;
+import model.parts.Cooler;
+import model.parts.CPU;
+import model.parts.GPU;
+import model.parts.Monitor;
+import model.parts.Motherboard;
+import model.parts.OperatingSystem;
+import model.parts.PowerSupply;
+import model.parts.RAM;
+import model.parts.Storage;
+import model.PC;
 import model.PCLists;
 
-public class ReviewPcUI {
+public class ReviewPcUI extends JInternalFrame {
     private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
+    private static final String FILE_DESCRIPTOR = "...file";
+    private static final String SCREEN_DESCRIPTOR = "...screen";
+    private JComboBox<String> printCombo;
     private JDesktopPane desktop;
     private JInternalFrame controlPanel;
 
@@ -49,8 +63,8 @@ public class ReviewPcUI {
     //     }
     // }
 
-    // public ReviewPcUI() {
-		
+    public ReviewPcUI(PC pc) {
+		super(pc.getName(), true, true, true, false);
     //     desktop = new JDesktopPane();
     //     desktop.addMouseListener(new DesktopFocusAction());
     //     controlPanel = new JInternalFrame("Control Panel", false, false, false, false);
@@ -69,26 +83,153 @@ public class ReviewPcUI {
     //     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     //     centreOnScreen();
     //     setVisible(true);
-    // }
+    }
 
-    // /**
-	//  * Helper to add control buttons to add parts.
-	//  */
-    // private void addButtonPanel() {
-    //     JPanel buttonPanel = new JPanel();
-    //     buttonPanel.setLayout(new GridLayout(10,1));
-    //     buttonPanel.add(new JButton(new CaseAction));
-    //     buttonPanel.add(new JButton(new CoolerAction));
-    //     buttonPanel.add(new JButton(new CpuAction));
-    //     buttonPanel.add(new JButton(new GpuAction));
-    //     buttonPanel.add(new JButton(new MonitorAction));
-    //     buttonPanel.add(new JButton(new MotherboardAction));
-    //     buttonPanel.add(new JButton(new OperatingSystemAction));
-    //     buttonPanel.add(new JButton(new PowerSupplyAction));
-    //     buttonPanel.add(new JButton(new RamAction));
-    //     buttonPanel.add(new JButton(new StorageAction));
-    //     buttonPanel.add(createPrintCombo());
+    /**
+	 * Helper to add control buttons to add parts.
+	 */
+    private void addButtonPanel() {
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(10,1));
+        buttonPanel.add(new JButton(new CaseAction()));
+        buttonPanel.add(new JButton(new CoolerAction()));
+        buttonPanel.add(new JButton(new CpuAction()));
+        buttonPanel.add(new JButton(new GpuAction()));
+        buttonPanel.add(new JButton(new MonitorAction()));
+        buttonPanel.add(new JButton(new MotherboardAction()));
+        buttonPanel.add(new JButton(new OperatingSystemAction()));
+        buttonPanel.add(new JButton(new PowerSupplyAction()));
+        buttonPanel.add(new JButton(new RamAction()));
+        buttonPanel.add(new JButton(new StorageAction()));
+        buttonPanel.add(createPrintCombo());
 		
-    //     controlPanel.add(buttonPanel, BorderLayout.WEST);
-    // }
+        controlPanel.add(buttonPanel, BorderLayout.WEST);
+    }
+
+    private JComboBox<String> createPrintCombo() {
+        printCombo = new JComboBox<String>();
+        printCombo.addItem(FILE_DESCRIPTOR);
+        printCombo.addItem(SCREEN_DESCRIPTOR);
+        return printCombo;
+    }
+
+    private class CaseAction extends AbstractAction {
+
+        CaseAction() {
+            super("Case");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+           
+        }
+    }
+
+    private class CoolerAction extends AbstractAction {
+
+        CoolerAction() {
+            super("Case");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+           
+        }
+    }
+
+    private class CpuAction extends AbstractAction {
+
+        CpuAction() {
+            super("Case");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+           
+        }
+    }
+
+    private class GpuAction extends AbstractAction {
+
+        GpuAction() {
+            super("Case");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+           
+        }
+    }
+
+    private class MonitorAction extends AbstractAction {
+
+        MonitorAction() {
+            super("Case");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+           
+        }
+    }
+
+    private class MotherboardAction extends AbstractAction {
+
+        MotherboardAction() {
+            super("Case");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+           
+        }
+    }
+
+    private class OperatingSystemAction extends AbstractAction {
+
+        OperatingSystemAction() {
+            super("Case");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+           
+        }
+    }
+
+    private class PowerSupplyAction extends AbstractAction {
+
+        PowerSupplyAction() {
+            super("Case");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+           
+        }
+    }
+
+    private class RamAction extends AbstractAction {
+
+        RamAction() {
+            super("Case");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+           
+        }
+    }
+
+    private class StorageAction extends AbstractAction {
+
+        StorageAction() {
+            super("Case");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+           
+        }
+    }
 }

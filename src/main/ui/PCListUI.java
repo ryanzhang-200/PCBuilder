@@ -58,6 +58,8 @@ public class PCListUI extends JFrame {
 
     public PCListUI() {
         pcLists = new PCLists();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
 		
         desktop = new JDesktopPane();
         desktop.addMouseListener(new DesktopFocusAction());
@@ -89,6 +91,7 @@ public class PCListUI extends JFrame {
         buttonPanel.add(new JButton(new AddPCAction()));
         buttonPanel.add(new JButton(new SelectedPCAction()));
         buttonPanel.add(new JButton(new ReviewPCAction()));
+        buttonPanel.add(new JButton(new ViewPCAction()));
         buttonPanel.add(new JButton(new RemovePCAction()));
         buttonPanel.add(new JButton(new CopyPCAction()));
         buttonPanel.add(new JButton(new PurchasePCAction()));
@@ -130,7 +133,6 @@ public class PCListUI extends JFrame {
 				
             PC pc = new PC(pcName);
             pcLists.addPC(pc);
-            desktop.add(new PCui(pc, PCListUI.this));
         }
     }
 
@@ -160,7 +162,21 @@ public class PCListUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            
+            desktop.add(new PCui(pcLists.getSelectedComputer(), PCListUI.this));
+        }
+    }
+
+    private class ViewPCAction extends AbstractAction {
+
+        ViewPCAction() {
+            super("View PC");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            for (PC pc : pcLists.returnComputers()) {
+                desktop.add(new PCui(pc, PCListUI.this));
+            }
         }
     }
 
@@ -201,6 +217,7 @@ public class PCListUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
+            
         }
     }
 
@@ -211,7 +228,7 @@ public class PCListUI extends JFrame {
         }
 
         @Override
-        public void actionPerformed(ActionEvent evt) {
+        public void actionPerformed(ActionEvent evtv) {
             try {
                 jsonWriter.open();
                 jsonWriter.write(pcLists);

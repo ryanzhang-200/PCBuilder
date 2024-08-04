@@ -9,6 +9,8 @@ import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
@@ -50,7 +52,7 @@ public class PCui extends JInternalFrame {
 	 * @param parent  the parent component
 	 */
     public PCui(PC pc, Component parent) {
-        super(pc.getName(), false, false, false, false);
+        super(pc.getName(), true, true, true, false);
         this.pc = pc;
         pcName = pc.getName();
         displayPcName = new JTextField("name:" + pcName);
