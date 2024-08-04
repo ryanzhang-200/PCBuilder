@@ -13,9 +13,9 @@ public class OperatingSystem implements Parts {
         cost = 50;
     }
     //EFFECTS: returns the System name as a string
-    // public String getSystemName() {
-    //     return systemName;
-    // }
+    public String getSystemName() {
+        return systemName;
+    }
 
     //EFFECTS: returns the cost of the operating system as a int
     public int getCost() {

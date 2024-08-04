@@ -15,9 +15,9 @@ public class PowerSupply implements Parts {
         power = 50;
     }
     //EFFECTS: returns the model as a string
-    // public String getModel() {
-    //     return model;
-    // }
+    public String getModel() {
+        return model;
+    }
 
     //EFFECTS: returns the cost of the power supply as a int
     public int getCost() {

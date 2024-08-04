@@ -14,9 +14,9 @@ public class Cooler implements Parts {
     }
 
     // //EFFECTS: returns the model as a string
-    // public String getModel() {
-    //     return model;
-    // }
+    public String getModel() {
+        return model;
+    }
 
     //EFFECTS: returns the cost of the cooler as a int
     public int getCost() {
