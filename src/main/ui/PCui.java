@@ -135,7 +135,7 @@ public class PCui extends JInternalFrame {
 	 */
     public void writePartsNamesThirdHalf(PC pc) {
         try {
-             writePowerSupplyName(pc);
+            writePowerSupplyName(pc);
         } catch (NoPartException e) {
             pcPowerSupply = new JTextField("Power Supply: BLANK");
         }

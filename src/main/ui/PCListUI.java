@@ -1,23 +1,12 @@
 package ui;
 
 import model.PCLists;
-import model.parts.CPU;
-import model.parts.Case;
-import model.parts.Cooler;
-import model.parts.GPU;
-import model.parts.Monitor;
-import model.parts.Motherboard;
-import model.parts.OperatingSystem;
-import model.parts.PowerSupply;
-import model.parts.RAM;
-import model.parts.Storage;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import model.PC;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.rmi.Remote;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -31,14 +20,12 @@ import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
 import exceptions.DuplicatePCException;
+import exceptions.PartAlreadyThereException;
 
 //renders the applications main window frame
 
@@ -56,6 +43,9 @@ public class PCListUI extends JFrame {
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/pclist.json";
 
+    /**
+	 * Constructor sets up button panel and window
+	 */
     public PCListUI() {
         pcLists = new PCLists();
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -67,7 +57,7 @@ public class PCListUI extends JFrame {
         controlPanel.setLayout(new BorderLayout());
 		
         setContentPane(desktop);
-        setTitle("CPSC 210: PCBuilder");
+        setTitle("PCBuilder");
         setSize(WIDTH, HEIGHT);
 		
         addButtonPanel();
@@ -114,9 +104,9 @@ public class PCListUI extends JFrame {
     }
 
 	/**
-	 * Helper to add Input window to main application window
+	 * Represents the action to be taken when the user wants to add a new
+	 * PC to PCLists.
 	 */
-
     private class AddPCAction extends AbstractAction {
 
         AddPCAction() {
@@ -136,6 +126,10 @@ public class PCListUI extends JFrame {
         }
     }
 
+    /**
+	 * Represents the action to be taken when the user wants to select a new
+	 * PC
+	 */
     private class SelectedPCAction extends AbstractAction {
 
         SelectedPCAction() {
@@ -154,6 +148,10 @@ public class PCListUI extends JFrame {
         }
     }
 
+    /**
+	 * Represents the action to be taken when the user wants to review 
+	 * Selected PC.
+	 */
     private class ReviewPCAction extends AbstractAction {
 
         ReviewPCAction() {
@@ -162,10 +160,20 @@ public class PCListUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            desktop.add(new PCui(pcLists.getSelectedComputer(), PCListUI.this));
+            // desktop.add(new PCui(pcLists.getSelectedComputer(), PCListUI.this));
+            try {
+                desktop.add(new ReviewPCui(pcLists.getSelectedComputer(), PCListUI.this));
+            } catch (PartAlreadyThereException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "System Error", 
+						JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
+    /**
+	 * Represents the action to be taken when the user wants to view all pcs
+	 * from PCLists.
+	 */
     private class ViewPCAction extends AbstractAction {
 
         ViewPCAction() {
@@ -180,6 +188,10 @@ public class PCListUI extends JFrame {
         }
     }
 
+    /**
+	 * Represents the action to be taken when the user wants to remove a pc
+	 * from pc lists.
+	 */
     private class RemovePCAction extends AbstractAction {
 
         RemovePCAction() {
@@ -197,6 +209,10 @@ public class PCListUI extends JFrame {
         }
     }
 
+    /**
+	 * Represents the action to be taken when the user wants to copy a
+	 * PC from a PC in PCLists.
+	 */
     private class CopyPCAction extends AbstractAction {
 
         CopyPCAction() {
@@ -209,6 +225,10 @@ public class PCListUI extends JFrame {
         }
     }
 
+    /**
+	 * Represents the action to be taken when the user wants to purchase a new
+	 * PC to PCLists.
+	 */
     private class PurchasePCAction extends AbstractAction {
 
         PurchasePCAction() {
@@ -221,6 +241,10 @@ public class PCListUI extends JFrame {
         }
     }
 
+    /**
+	 * Represents the action to be taken when the user wants save existing 
+	 * PCs in PCLists.
+	 */
     private class SavePCAction extends AbstractAction {
 
         SavePCAction() {
@@ -240,6 +264,10 @@ public class PCListUI extends JFrame {
         }
     }
 
+    /**
+	 * Represents the action to be taken when the user wants to load 
+	 * an existing PCList
+	 */
     private class LoadPCAction extends AbstractAction {
 
         LoadPCAction() {

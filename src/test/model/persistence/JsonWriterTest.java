@@ -2,16 +2,6 @@ package model.persistence;
 
 import model.PCLists;
 import model.PC;
-import model.parts.Case;
-import model.parts.Cooler;
-import model.parts.CPU;
-import model.parts.GPU;
-import model.parts.Monitor;
-import model.parts.Motherboard;
-import model.parts.OperatingSystem;
-import model.parts.PowerSupply;
-import model.parts.RAM;
-import model.parts.Storage;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 

@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.rmi.Remote;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -18,71 +19,79 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
-import model.parts.Case;
-import model.parts.Cooler;
-import model.parts.CPU;
-import model.parts.GPU;
-import model.parts.Monitor;
-import model.parts.Motherboard;
-import model.parts.OperatingSystem;
-import model.parts.PowerSupply;
-import model.parts.RAM;
-import model.parts.Storage;
+import exceptions.PartAlreadyThereException;
 import model.PC;
 import model.PCLists;
+import model.parts.Case;
+import ui.reviewingPcUi.AddPartUi;
+import ui.reviewingPcUi.ChangeNameUi;
+import ui.reviewingPcUi.RemovePartUi;
+import ui.reviewingPcUi.ReturnCostsUi;
 
-public class ReviewPcUI extends JInternalFrame {
-    private static final int WIDTH = 800;
-	private static final int HEIGHT = 600;
-    private static final String FILE_DESCRIPTOR = "...file";
-    private static final String SCREEN_DESCRIPTOR = "...screen";
-    private JComboBox<String> printCombo;
-    private JDesktopPane desktop;
+public class ReviewPCui extends JInternalFrame {
+    private static final int WIDTH = 200;
+    private static final int HEIGHT = 400;
     private JInternalFrame controlPanel;
+    private JDesktopPane desktop;
+    private String part;
+    private PC pc;
+    private JTextField displayPcName;
+    private String pcName;
+    private Component parent;
 
-    // /**
-	//  * Helper to centre main application window on desktop
-	//  */
-    // private void centreOnScreen() {
-    //     int width = Toolkit.getDefaultToolkit().getScreenSize().width;
-    //     int height = Toolkit.getDefaultToolkit().getScreenSize().height;
-    //     setLocation((width - getWidth()) / 2, (height - getHeight()) / 2);
-    // }
+    /**
+	 * Constructor sets up button panel and window for reviewing individual PCs
+     * gives the options to add part, remove part, return costs and change name
+     * @param pc   the pc
+	 * @param parent  the parent component
+	 */
+    public ReviewPCui(PC pc, Component parent) throws PartAlreadyThereException {
+        super(pc.getName(), true, true, true, false);
+        this.pc = pc;
+        this.parent = parent;
 
-	// /**
-	//  * Represents action to be taken when user clicks desktop
-	//  * to switch focus. (Needed for key handling.)
-	//  */
-    // private class DesktopFocusAction extends MouseAdapter {
-    //     @Override
-    //     public void mouseClicked(MouseEvent e) {
-    //         ReviewPcUI.this.requestFocusInWindow();
-    //     }
-    // }
+        desktop = new JDesktopPane();
+        desktop.addMouseListener(new DesktopFocusAction());
+        controlPanel = new JInternalFrame("Control Panel", false, false, false, false);
+        controlPanel.setLayout(new BorderLayout());
+		
+        setContentPane(desktop);
+        setTitle("Reviewing PC");
+        setSize(WIDTH, HEIGHT);
+		
+        addButtonPanel();
+		
+        controlPanel.pack();
+        controlPanel.setVisible(true);
+        desktop.add(controlPanel);
+		
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        centreOnScreen();
+        setVisible(true);
+    }
 
-    public ReviewPcUI(PC pc) {
-		super(pc.getName(), true, true, true, false);
-    //     desktop = new JDesktopPane();
-    //     desktop.addMouseListener(new DesktopFocusAction());
-    //     controlPanel = new JInternalFrame("Control Panel", false, false, false, false);
-    //     controlPanel.setLayout(new BorderLayout());
-		
-    //     setContentPane(desktop);
-    //     setTitle("CPSC 210: PCBuilder");
-    //     setSize(WIDTH, HEIGHT);
-		
-    //     addButtonPanel();
-		
-    //     controlPanel.pack();
-    //     controlPanel.setVisible(true);
-    //     desktop.add(controlPanel);
-		
-    //     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    //     centreOnScreen();
-    //     setVisible(true);
+    /**
+	 * Helper to centre main application window on desktop
+	 */
+    private void centreOnScreen() {
+        int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+        int height = Toolkit.getDefaultToolkit().getScreenSize().height;
+        setLocation((width - getWidth()) / 2, (height - getHeight()) / 2);
+    }
+
+	/**
+	 * Represents action to be taken when user clicks desktop
+	 * to switch focus. (Needed for key handling.)
+	 */
+    private class DesktopFocusAction extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            ReviewPCui.this.requestFocusInWindow();
+        }
     }
 
     /**
@@ -90,146 +99,87 @@ public class ReviewPcUI extends JInternalFrame {
 	 */
     private void addButtonPanel() {
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(10,1));
-        buttonPanel.add(new JButton(new CaseAction()));
-        buttonPanel.add(new JButton(new CoolerAction()));
-        buttonPanel.add(new JButton(new CpuAction()));
-        buttonPanel.add(new JButton(new GpuAction()));
-        buttonPanel.add(new JButton(new MonitorAction()));
-        buttonPanel.add(new JButton(new MotherboardAction()));
-        buttonPanel.add(new JButton(new OperatingSystemAction()));
-        buttonPanel.add(new JButton(new PowerSupplyAction()));
-        buttonPanel.add(new JButton(new RamAction()));
-        buttonPanel.add(new JButton(new StorageAction()));
-        buttonPanel.add(createPrintCombo());
-		
+        buttonPanel.setLayout(new GridLayout(4,1));
+        buttonPanel.add(new JButton(new AddPartAction()));
+        buttonPanel.add(new JButton(new RemovePartAction()));
+        buttonPanel.add(new JButton(new ReturnCostsAction()));
+        buttonPanel.add(new JButton(new ChangeNameAction()));
         controlPanel.add(buttonPanel, BorderLayout.WEST);
     }
 
-    private JComboBox<String> createPrintCombo() {
-        printCombo = new JComboBox<String>();
-        printCombo.addItem(FILE_DESCRIPTOR);
-        printCombo.addItem(SCREEN_DESCRIPTOR);
-        return printCombo;
-    }
+    /**
+	 * Represents the action to be taken when the user wants to add a new
+	 * Part to PC. Allows which part to be selected
+	 */
+    private class AddPartAction extends AbstractAction {
 
-    private class CaseAction extends AbstractAction {
-
-        CaseAction() {
-            super("Case");
+        AddPartAction() {
+            super("Add Part");
         }
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-           
+            desktop.add(new AddPartUi(pc, parent));
         }
     }
 
-    private class CoolerAction extends AbstractAction {
+    /**
+	 * Represents the action to be taken when the user wants to remove a new
+	 * Part to PC. Allows which part to be selected
+	 */
+    private class RemovePartAction extends AbstractAction {
 
-        CoolerAction() {
-            super("Case");
+        RemovePartAction() {
+            super("Remove Part");
         }
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-           
+            desktop.add(new RemovePartUi(pc, parent));
         }
     }
 
-    private class CpuAction extends AbstractAction {
+    /**
+	 * Represents the action to be taken when the user wants to return costs
+	 * of parts of pc
+	 */
+    private class ReturnCostsAction extends AbstractAction {
 
-        CpuAction() {
-            super("Case");
+        ReturnCostsAction() {
+            super("Return Costs");
         }
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-           
+            
         }
-    }
+    } 
 
-    private class GpuAction extends AbstractAction {
+    /**
+	 * Represents the action to be taken when the user wants to change pc name
+	 * 
+	 */
+    private class ChangeNameAction extends AbstractAction {
 
-        GpuAction() {
-            super("Case");
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent evt) {
-           
-        }
-    }
-
-    private class MonitorAction extends AbstractAction {
-
-        MonitorAction() {
-            super("Case");
+        ChangeNameAction() {
+            super("Change Name");
         }
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-           
+            String part = JOptionPane.showInputDialog(null,
+                     "Rename PC",
+                        "Enter Name",
+                            JOptionPane.QUESTION_MESSAGE);
+            pc.namePC(part);
         }
     }
 
-    private class MotherboardAction extends AbstractAction {
-
-        MotherboardAction() {
-            super("Case");
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent evt) {
-           
-        }
-    }
-
-    private class OperatingSystemAction extends AbstractAction {
-
-        OperatingSystemAction() {
-            super("Case");
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent evt) {
-           
-        }
-    }
-
-    private class PowerSupplyAction extends AbstractAction {
-
-        PowerSupplyAction() {
-            super("Case");
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent evt) {
-           
-        }
-    }
-
-    private class RamAction extends AbstractAction {
-
-        RamAction() {
-            super("Case");
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent evt) {
-           
-        }
-    }
-
-    private class StorageAction extends AbstractAction {
-
-        StorageAction() {
-            super("Case");
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent evt) {
-           
-        }
+    /**
+	 * Sets the position of this Reviewing PC UI relative to parent component
+	 * @param parent  the parent component
+	 */
+    private void setPosition(Component parent) {
+        setLocation(100, 100);
     }
 }
