@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -24,9 +23,6 @@ public class RemovePartUi extends JInternalFrame {
 
     private static final int WIDTH = 300;
     private static final int HEIGHT = 400;
-    private static final String FILE_DESCRIPTOR = "...file";
-    private static final String SCREEN_DESCRIPTOR = "...screen";
-    private JComboBox<String> printCombo;
     private JDesktopPane desktop;
     private JInternalFrame controlPanel;
     private PC pc;
