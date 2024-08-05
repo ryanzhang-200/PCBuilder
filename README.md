@@ -34,6 +34,6 @@ As a user I would like to be able to log in and access my previously worked on l
 
 - You can generate the first required action related to the user story "adding multiple Xs to a Y" by pressing button "Add PC"
 - You can generate the second required action related to the user story "adding multiple Xs to a Y" by pressing button "View PC"
-- You can locate my visual component by pressing the "Return PC Costs" button
+- You can locate my visual component by pressing the Add PC button, which will load up an image of the PC
 - You can save the state of my application by pressing the "Save PC" button
 - You can reload the state of my application by pressing the "Load PC" button
