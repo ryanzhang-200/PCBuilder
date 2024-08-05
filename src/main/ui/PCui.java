@@ -2,11 +2,16 @@ package ui;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -14,6 +19,7 @@ import javax.swing.JMenu;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import exceptions.NoPartException;
@@ -34,6 +40,8 @@ public class PCui extends JInternalFrame {
     private static final int HEIGHT = 300;
     private static final int LOC = 100;
     private PC pc;
+    private Graphics graphics;
+    
     private JTextField displayPcName;
     private JTextField pcCase;
     private JTextField pcCooler;
@@ -46,6 +54,7 @@ public class PCui extends JInternalFrame {
     private List<JTextField> pcRam;
     private List<JTextField> pcStorage;
     private String pcName;
+    private ImageIcon pcImage;
     private int pcNum = 1;
 	
 	/**
@@ -66,27 +75,36 @@ public class PCui extends JInternalFrame {
         writePartsNamesThirdHalf(pc);
         Container cp = getContentPane();  
         cp.setLayout(new BoxLayout(cp, BoxLayout.Y_AXIS));
-        ImageIcon pcImage = createImageIcon("images/PC.jpg");
         cp.add(displayPcName);
+        printImage(cp);
         displayPartsNames(cp);
-        // cp.add(pcCase);
-
         setSize(WIDTH, HEIGHT);
         pcNum++;
         setPosition(parent);
         setVisible(true);
     }
 
-   /** Returns an ImageIcon, or null if the path was invalid. */
-   protected static ImageIcon createImageIcon(String path) {
-    java.net.URL imgURL = PCui.class.getResource(path);
-    if (imgURL != null) {
-        return new ImageIcon(imgURL);
-    } else {
-        System.err.println("Couldn't find file: " + path);
-        return null;
+    /**
+     * Puts ImageIcon into the Frame
+     */
+    protected void printImage(Container cp) {
+        pcImage = createImageIcon("src/images/PCImg.jpg");
+        cp.add(new JLabel(pcImage));
+        setVisible(true);
     }
-}
+
+    /**
+     * Creates an ImageIcon if the path is valid.
+     */
+    protected ImageIcon createImageIcon(String path) {
+        java.net.URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
+    }
 
     /**
 	 * Stores the JTextFields to the individual part names
