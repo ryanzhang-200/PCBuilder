@@ -27,14 +27,14 @@ import exceptions.PartAlreadyThereException;
 import model.PC;
 import model.PCLists;
 import model.parts.Case;
-import ui.reviewingPcUi.AddPartUi;
-import ui.reviewingPcUi.ChangeNameUi;
-import ui.reviewingPcUi.RemovePartUi;
-import ui.reviewingPcUi.ReturnCostsUi;
+import ui.reviewingui.AddPartUi;
+import ui.reviewingui.ChangeNameUi;
+import ui.reviewingui.RemovePartUi;
+import ui.reviewingui.ReturnCostsUi;
 
 public class ReviewPCui extends JInternalFrame {
-    private static final int WIDTH = 200;
-    private static final int HEIGHT = 400;
+    private static final int WIDTH = 400;
+    private static final int HEIGHT = 800;
     private JInternalFrame controlPanel;
     private JDesktopPane desktop1;
     private String part;
@@ -56,7 +56,7 @@ public class ReviewPCui extends JInternalFrame {
 
         desktop1 = new JDesktopPane();
         desktop1.addMouseListener(new DesktopFocusAction());
-        controlPanel = new JInternalFrame("Control Panel", false, false, false, false);
+        controlPanel = new JInternalFrame("Control Panel", false, true, false, false);
         controlPanel.setLayout(new BorderLayout());
 		
         setContentPane(desktop1);

@@ -30,8 +30,8 @@ import exceptions.PartAlreadyThereException;
 //renders the applications main window frame
 
 public class PCListUI extends JFrame {
-    private static final int WIDTH = 1000;
-    private static final int HEIGHT = 750;
+    private static final int WIDTH = 1400;
+    private static final int HEIGHT = 800;
     private static final String FILE_DESCRIPTOR = "...file";
     private static final String SCREEN_DESCRIPTOR = "...screen";
     private PCLists pcLists;

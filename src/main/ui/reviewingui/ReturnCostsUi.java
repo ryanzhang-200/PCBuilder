@@ -1,4 +1,4 @@
-package ui.reviewingPcUi;
+package ui.reviewingui;
 
 public class ReturnCostsUi {
 

@@ -1,4 +1,4 @@
-package ui.reviewingPcUi;
+package ui.reviewingui;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -17,42 +17,31 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-import exceptions.PartAlreadyThereException;
-import model.parts.Case;
-import model.parts.Cooler;
-import model.parts.CPU;
-import model.parts.GPU;
-import model.parts.Monitor;
-import model.parts.Motherboard;
-import model.parts.OperatingSystem;
-import model.parts.PowerSupply;
-import model.parts.RAM;
-import model.parts.Storage;
+import exceptions.NoPartException;
 import model.PC;
-import model.PCLists;
 
-public class AddPartUi extends JInternalFrame {
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 600;
+public class RemovePartUi extends JInternalFrame {
+
+    private static final int WIDTH = 400;
+    private static final int HEIGHT = 400;
     private static final String FILE_DESCRIPTOR = "...file";
     private static final String SCREEN_DESCRIPTOR = "...screen";
     private JComboBox<String> printCombo;
     private JDesktopPane desktop;
     private JInternalFrame controlPanel;
-    private String part;
     private PC pc;
 
-    public AddPartUi(PC pc, Component parent) {
+    public RemovePartUi(PC pc, Component parent) {
         super(pc.getName(), true, true, true, false);
         this.pc = pc;
 
         desktop = new JDesktopPane();
         desktop.addMouseListener(new DesktopFocusAction());
-        controlPanel = new JInternalFrame("Control Panel", false, false, false, false);
+        controlPanel = new JInternalFrame("Control Panel", false, true, false, false);
         controlPanel.setLayout(new BorderLayout());
 		
         setContentPane(desktop);
-        setTitle("Adding Parts");
+        setTitle("Removing Parts");
         setSize(WIDTH, HEIGHT);
 		
         addButtonPanel();
@@ -107,13 +96,13 @@ public class AddPartUi extends JInternalFrame {
                         "Enter Case Name",
                             JOptionPane.QUESTION_MESSAGE);
             try {
-                if (pc.addCase(new Case(part))) {
-                    pc.addCase(new Case(part));
+                if (pc.removeCase()) {
+                    pc.removeCase();
                 } else {
-                    throw new PartAlreadyThereException();
+                    throw new NoPartException();
                 }
-            } catch (PartAlreadyThereException e) {
-
+            } catch (NoPartException e) {
+                //Catch
             }
             
         }
@@ -132,13 +121,13 @@ public class AddPartUi extends JInternalFrame {
                     "Enter Cooler Name",
                             JOptionPane.QUESTION_MESSAGE);
             try {
-                if (pc.addCooler(new Cooler(part))) {
-                    pc.addCooler(new Cooler(part));
+                if (pc.removeCooler()) {
+                    pc.removeCooler();
                 } else {
-                    throw new PartAlreadyThereException();
+                    throw new NoPartException();
                 }
-            } catch (PartAlreadyThereException e) {
-
+            } catch (NoPartException e) {
+                //Catch
             }
         }
     }
@@ -156,13 +145,13 @@ public class AddPartUi extends JInternalFrame {
                       "Enter Cpu Name",
                        JOptionPane.QUESTION_MESSAGE);
             try {
-                if (pc.addCPU(new CPU(part))) {
-                    pc.addCPU(new CPU(part));
+                if (pc.removeCPU()) {
+                    pc.removeCPU();
                 } else {
-                    throw new PartAlreadyThereException();
+                    throw new NoPartException();
                 }
-            } catch (PartAlreadyThereException e) {
-
+            } catch (NoPartException e) {
+                //Catch
             }
         }
     }
@@ -180,13 +169,13 @@ public class AddPartUi extends JInternalFrame {
                     "Enter Case Name",
                         JOptionPane.QUESTION_MESSAGE);
             try {
-                if (pc.addPartsGPU(new GPU(part))) {
-                    pc.addPartsGPU(new GPU(part));
+                if (pc.removeGPU(part)) {
+                    pc.removeGPU(part);
                 } else {
-                    throw new PartAlreadyThereException();
+                    throw new NoPartException();
                 }      
-            } catch (PartAlreadyThereException e) {
-
+            } catch (NoPartException e) {
+                //Catch
             }     
         }
     }
@@ -203,7 +192,7 @@ public class AddPartUi extends JInternalFrame {
                       "Select Monitor",
                       "Enter Monitor Name",
                            JOptionPane.QUESTION_MESSAGE);
-            pc.addMonitor(new Monitor(part));  
+            pc.removeMonitor(part);  
         }
     }
 
@@ -220,13 +209,13 @@ public class AddPartUi extends JInternalFrame {
                      "Enter Motherboard Name",
                         JOptionPane.QUESTION_MESSAGE);
             try {
-                if (pc.addMotherboard(new Motherboard(part))) {
-                    pc.addMotherboard(new Motherboard(part));
+                if (pc.removeMotherboard()) {
+                    pc.removeMotherboard();
                 } else {
-                   throw new PartAlreadyThereException();
+                    throw new NoPartException();
                 }   
-            } catch (PartAlreadyThereException e) {
-
+            } catch (NoPartException e) {
+                //Catch
             } 
         }
     }
@@ -244,13 +233,13 @@ public class AddPartUi extends JInternalFrame {
                          "Enter OperatingSystem Name",
                           JOptionPane.QUESTION_MESSAGE);
             try {
-                if (pc.addOperatingSystem(new OperatingSystem(part))) {
-                    pc.addOperatingSystem(new OperatingSystem(part));
+                if (pc.removeOperatingSystem()) {
+                    pc.removeOperatingSystem();
                 } else {
-                    throw new PartAlreadyThereException();
+                    throw new NoPartException();
                 }    
-            } catch (PartAlreadyThereException e) {
-
+            } catch (NoPartException e) {
+                //Catch
             }
         }
     }
@@ -268,13 +257,13 @@ public class AddPartUi extends JInternalFrame {
                          "Enter Power Supply Name",
                        JOptionPane.QUESTION_MESSAGE);
             try {
-                if (pc.addPowerSupply(new PowerSupply(part))) {
-                    pc.addPowerSupply(new PowerSupply(part));
+                if (pc.removePowerSupply()) {
+                    pc.removePowerSupply();
                 } else {
-                   throw new PartAlreadyThereException();
+                    throw new NoPartException();
                 }    
-            } catch (PartAlreadyThereException e) {
-
+            } catch (NoPartException e) {
+                //Catch
             }
         }
     }
@@ -292,13 +281,13 @@ public class AddPartUi extends JInternalFrame {
                       "Enter RAM Name",
                            JOptionPane.QUESTION_MESSAGE);
             try {
-                if (pc.addPartsRAM(new RAM(part))) {
-                    pc.addPartsRAM(new RAM(part));
+                if (pc.removeRAM(part)) {
+                    pc.removeRAM(part);
                 } else {
-                    throw new PartAlreadyThereException();
+                    throw new NoPartException();
                 }    
-            } catch (PartAlreadyThereException e) {
-
+            } catch (NoPartException e) {
+                //Catch
             }
         }
     }
@@ -315,7 +304,7 @@ public class AddPartUi extends JInternalFrame {
                      "Select Storage",
                        "Enter Storage Name",
                                JOptionPane.QUESTION_MESSAGE);
-            pc.addStorage(new Storage(part));
+            pc.removeStorage(part);
         }
     }
 
@@ -335,7 +324,7 @@ public class AddPartUi extends JInternalFrame {
     private class DesktopFocusAction extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
-            AddPartUi.this.requestFocusInWindow();
+            RemovePartUi.this.requestFocusInWindow();
         }
     }
 
