@@ -11,12 +11,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.AbstractAction;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JMenu;
-import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -85,10 +84,13 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-     * Puts ImageIcon into the Frame
+     * Puts ImageIcon into the Frame and transforms it
      */
     protected void printImage(Container cp) {
-        pcImage = createImageIcon("src/images/PCImg.jpg");
+        ImageIcon pcImage = new ImageIcon("images/PCImg.jpg"); 
+        Image image = pcImage.getImage();
+        Image newimg = image.getScaledInstance(60,  60, java.awt.Image.SCALE_SMOOTH); 
+        pcImage = new ImageIcon(newimg); 
         cp.add(new JLabel(pcImage));
         setVisible(true);
     }
@@ -97,7 +99,7 @@ public class PCui extends JInternalFrame {
      * Creates an ImageIcon if the path is valid.
      */
     protected ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = getClass().getResource(path);
+        java.net.URL imgURL = PCui.class.getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
         } else {
