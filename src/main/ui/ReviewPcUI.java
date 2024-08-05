@@ -28,7 +28,6 @@ import model.PC;
 import model.PCLists;
 import model.parts.Case;
 import ui.reviewingui.AddPartUi;
-import ui.reviewingui.ChangeNameUi;
 import ui.reviewingui.RemovePartUi;
 import ui.reviewingui.ReturnCostsUi;
 
@@ -56,7 +55,7 @@ public class ReviewPCui extends JInternalFrame {
 
         desktop1 = new JDesktopPane();
         desktop1.addMouseListener(new DesktopFocusAction());
-        controlPanel = new JInternalFrame("Control Panel", false, true, false, false);
+        controlPanel = new JInternalFrame(pc.getName(), false, true, false, false);
         controlPanel.setLayout(new BorderLayout());
 		
         setContentPane(desktop1);

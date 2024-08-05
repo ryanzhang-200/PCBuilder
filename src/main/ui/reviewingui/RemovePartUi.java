@@ -22,7 +22,7 @@ import model.PC;
 
 public class RemovePartUi extends JInternalFrame {
 
-    private static final int WIDTH = 400;
+    private static final int WIDTH = 300;
     private static final int HEIGHT = 400;
     private static final String FILE_DESCRIPTOR = "...file";
     private static final String SCREEN_DESCRIPTOR = "...screen";
@@ -31,13 +31,19 @@ public class RemovePartUi extends JInternalFrame {
     private JInternalFrame controlPanel;
     private PC pc;
 
+    /**
+	 * Constructor sets up button panel and window for removing parts from the selected pc
+     * gives the options to add part, remove part, return costs and change name
+     * @param pc   the pc
+	 * @param parent  the parent component
+	 */
     public RemovePartUi(PC pc, Component parent) {
         super(pc.getName(), true, true, true, false);
         this.pc = pc;
 
         desktop = new JDesktopPane();
         desktop.addMouseListener(new DesktopFocusAction());
-        controlPanel = new JInternalFrame("Control Panel", false, true, false, false);
+        controlPanel = new JInternalFrame(pc.getName(), false, false, false, false);
         controlPanel.setLayout(new BorderLayout());
 		
         setContentPane(desktop);
@@ -52,6 +58,7 @@ public class RemovePartUi extends JInternalFrame {
 		
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         centreOnScreen();
+        setLocation(100, 100);
         setVisible(true);
     }
 
@@ -71,18 +78,14 @@ public class RemovePartUi extends JInternalFrame {
         buttonPanel.add(new JButton(new PowerSupplyAction()));
         buttonPanel.add(new JButton(new RamAction()));
         buttonPanel.add(new JButton(new StorageAction()));
-        buttonPanel.add(createPrintCombo());
 		
         controlPanel.add(buttonPanel, BorderLayout.WEST);
     }
 
-    private JComboBox<String> createPrintCombo() {
-        printCombo = new JComboBox<String>();
-        printCombo.addItem(FILE_DESCRIPTOR);
-        printCombo.addItem(SCREEN_DESCRIPTOR);
-        return printCombo;
-    }
-
+    /**
+	 * removes case, allows user to select model
+     * if there is no case, throws NoPartException
+	 */
     private class CaseAction extends AbstractAction {
 
         CaseAction() {
@@ -108,6 +111,10 @@ public class RemovePartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * removes cooler, allows user to select model
+     * if there is no cooler, throws NoPartException
+	 */
     private class CoolerAction extends AbstractAction {
 
         CoolerAction() {
@@ -132,6 +139,10 @@ public class RemovePartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * removes cpu, allows user to select model
+     * if there is no cpu, throws NoPartException
+	 */
     private class CpuAction extends AbstractAction {
 
         CpuAction() {
@@ -156,6 +167,10 @@ public class RemovePartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * removes gpu, allows user to select model
+     * if there are no gpu, throws NoPartException
+	 */
     private class GpuAction extends AbstractAction {
 
         GpuAction() {
@@ -180,6 +195,10 @@ public class RemovePartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * removes monitor, allows user to select model
+     * if there are no monitor, throws NoPartException
+	 */
     private class MonitorAction extends AbstractAction {
 
         MonitorAction() {
@@ -192,10 +211,22 @@ public class RemovePartUi extends JInternalFrame {
                       "Select Monitor",
                       "Enter Monitor Name",
                            JOptionPane.QUESTION_MESSAGE);
-            pc.removeMonitor(part);  
+            try {
+                if (pc.removeMonitor(part)) {
+                    pc.removeMonitor(part);
+                } else {
+                    throw new NoPartException();
+                }   
+            } catch (NoPartException e) {
+                //Catch
+            } 
         }
     }
 
+    /**
+	 * removes motherboard, allows user to select model
+     * if there is no motherboard, throws NoPartException
+	 */
     private class MotherboardAction extends AbstractAction {
 
         MotherboardAction() {
@@ -220,6 +251,10 @@ public class RemovePartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * removes operatingsystem, allows user to select model
+     * if there is no operatingsystem, throws NoPartException
+	 */
     private class OperatingSystemAction extends AbstractAction {
 
         OperatingSystemAction() {
@@ -244,6 +279,10 @@ public class RemovePartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * removes power supply, allows user to select model
+     * if there is no supply, throws NoPartException
+	 */
     private class PowerSupplyAction extends AbstractAction {
 
         PowerSupplyAction() {
@@ -268,6 +307,10 @@ public class RemovePartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * removes RAM, allows user to select model
+     * if there is no RAM, throws NoPartException
+	 */
     private class RamAction extends AbstractAction {
 
         RamAction() {
@@ -292,6 +335,10 @@ public class RemovePartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * removes storage, allows user to select model
+     * if there is no storage, throws NoPartException
+	 */
     private class StorageAction extends AbstractAction {
 
         StorageAction() {
@@ -304,7 +351,15 @@ public class RemovePartUi extends JInternalFrame {
                      "Select Storage",
                        "Enter Storage Name",
                                JOptionPane.QUESTION_MESSAGE);
-            pc.removeStorage(part);
+            try {
+                if (pc.removeStorage(part)) {
+                    pc.removeStorage(part);
+                } else {
+                    throw new NoPartException();
+                }   
+            } catch (NoPartException e) {
+                //Catch
+            } 
         }
     }
 

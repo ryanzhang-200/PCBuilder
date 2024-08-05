@@ -32,7 +32,7 @@ import model.PC;
 import model.PCLists;
 
 public class AddPartUi extends JInternalFrame {
-    private static final int WIDTH = 400;
+    private static final int WIDTH = 300;
     private static final int HEIGHT = 400;
     private static final String FILE_DESCRIPTOR = "...file";
     private static final String SCREEN_DESCRIPTOR = "...screen";
@@ -42,13 +42,19 @@ public class AddPartUi extends JInternalFrame {
     private String part;
     private PC pc;
 
+    /**
+	 * Constructor sets up button panel and window for adding part to the selected pc
+     * gives the options to add part, remove part, return costs and change name
+     * @param pc   the pc
+	 * @param parent  the parent component
+	 */
     public AddPartUi(PC pc, Component parent) {
         super(pc.getName(), true, true, true, false);
         this.pc = pc;
 
         desktop = new JDesktopPane();
         desktop.addMouseListener(new DesktopFocusAction());
-        controlPanel = new JInternalFrame("Control Panel", false, true, false, false);
+        controlPanel = new JInternalFrame(pc.getName(), false, false, false, false);
         controlPanel.setLayout(new BorderLayout());
 		
         setContentPane(desktop);
@@ -63,6 +69,7 @@ public class AddPartUi extends JInternalFrame {
 		
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         centreOnScreen();
+        setLocation(100, 100);
         setVisible(true);
     }
 
@@ -94,6 +101,10 @@ public class AddPartUi extends JInternalFrame {
         return printCombo;
     }
 
+     /**
+	 * adds case, allows user to select model
+     * if there is a case, throws PartAlreadyThereException
+	 */
     private class CaseAction extends AbstractAction {
 
         CaseAction() {
@@ -119,6 +130,10 @@ public class AddPartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * adds cooler, allows user to select model
+     * if there is a cooler, throws PartAlreadyThereException
+	 */
     private class CoolerAction extends AbstractAction {
 
         CoolerAction() {
@@ -143,6 +158,10 @@ public class AddPartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * adds CPU, allows user to select model
+     * if there is a CPU, throws PartAlreadyThereException
+	 */
     private class CpuAction extends AbstractAction {
 
         CpuAction() {
@@ -167,6 +186,10 @@ public class AddPartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * adds GPU, allows user to select model
+     * if GPU is maxed out, throws PartAlreadyThereException
+	 */
     private class GpuAction extends AbstractAction {
 
         GpuAction() {
@@ -191,6 +214,9 @@ public class AddPartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * adds monitor, allows user to select model
+	 */
     private class MonitorAction extends AbstractAction {
 
         MonitorAction() {
@@ -207,6 +233,10 @@ public class AddPartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * adds motherboard, allows user to select model
+     * if there is a motherboard, throws PartAlreadyThereException
+	 */
     private class MotherboardAction extends AbstractAction {
 
         MotherboardAction() {
@@ -231,6 +261,10 @@ public class AddPartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * adds operating system, allows user to select system
+     * if there is a operating system, throws PartAlreadyThereException
+	 */
     private class OperatingSystemAction extends AbstractAction {
 
         OperatingSystemAction() {
@@ -255,6 +289,10 @@ public class AddPartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * adds power supply, allows user to select model
+     * if there is a power supply, throws PartAlreadyThereException
+	 */
     private class PowerSupplyAction extends AbstractAction {
 
         PowerSupplyAction() {
@@ -279,6 +317,10 @@ public class AddPartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * adds RAM, allows user to select model
+     * if RAM is maxed out, throws PartAlreadyThereException
+	 */
     private class RamAction extends AbstractAction {
 
         RamAction() {
@@ -303,6 +345,9 @@ public class AddPartUi extends JInternalFrame {
         }
     }
 
+    /**
+	 * adds storage, allows user to select model
+	 */
     private class StorageAction extends AbstractAction {
 
         StorageAction() {
@@ -337,13 +382,5 @@ public class AddPartUi extends JInternalFrame {
         public void mouseClicked(MouseEvent e) {
             AddPartUi.this.requestFocusInWindow();
         }
-    }
-
-    /**
-	 * Sets the position of this Reviewing PC UI relative to parent component
-	 * @param parent  the parent component
-	 */
-    private void setPosition(Component parent) {
-        setLocation(100, 100);
     }
 }

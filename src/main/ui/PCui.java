@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import javax.swing.AbstractAction;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JMenu;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
@@ -55,6 +57,7 @@ public class PCui extends JInternalFrame {
         super(pc.getName(), true, true, true, false);
         this.pc = pc;
         pcName = pc.getName();
+        
         displayPcName = new JTextField("name:" + pcName);
         displayPcName.setEditable(false);
         displayPcName.setAlignmentX(CENTER_ALIGNMENT);
@@ -63,6 +66,7 @@ public class PCui extends JInternalFrame {
         writePartsNamesThirdHalf(pc);
         Container cp = getContentPane();  
         cp.setLayout(new BoxLayout(cp, BoxLayout.Y_AXIS));
+        ImageIcon pcImage = createImageIcon("images/PC.jpg");
         cp.add(displayPcName);
         displayPartsNames(cp);
         // cp.add(pcCase);
@@ -72,6 +76,17 @@ public class PCui extends JInternalFrame {
         setPosition(parent);
         setVisible(true);
     }
+
+   /** Returns an ImageIcon, or null if the path was invalid. */
+   protected static ImageIcon createImageIcon(String path) {
+    java.net.URL imgURL = PCui.class.getResource(path);
+    if (imgURL != null) {
+        return new ImageIcon(imgURL);
+    } else {
+        System.err.println("Couldn't find file: " + path);
+        return null;
+    }
+}
 
     /**
 	 * Stores the JTextFields to the individual part names
