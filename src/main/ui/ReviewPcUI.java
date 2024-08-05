@@ -36,7 +36,7 @@ public class ReviewPCui extends JInternalFrame {
     private static final int WIDTH = 200;
     private static final int HEIGHT = 400;
     private JInternalFrame controlPanel;
-    private JDesktopPane desktop;
+    private JDesktopPane desktop1;
     private String part;
     private PC pc;
     private JTextField displayPcName;
@@ -54,12 +54,12 @@ public class ReviewPCui extends JInternalFrame {
         this.pc = pc;
         this.parent = parent;
 
-        desktop = new JDesktopPane();
-        desktop.addMouseListener(new DesktopFocusAction());
+        desktop1 = new JDesktopPane();
+        desktop1.addMouseListener(new DesktopFocusAction());
         controlPanel = new JInternalFrame("Control Panel", false, false, false, false);
         controlPanel.setLayout(new BorderLayout());
 		
-        setContentPane(desktop);
+        setContentPane(desktop1);
         setTitle("Reviewing PC");
         setSize(WIDTH, HEIGHT);
 		
@@ -67,7 +67,7 @@ public class ReviewPCui extends JInternalFrame {
 		
         controlPanel.pack();
         controlPanel.setVisible(true);
-        desktop.add(controlPanel);
+        desktop1.add(controlPanel);
 		
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         centreOnScreen();
@@ -119,7 +119,7 @@ public class ReviewPCui extends JInternalFrame {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            desktop.add(new AddPartUi(pc, parent));
+            desktop1.add(new AddPartUi(pc, parent));
         }
     }
 
@@ -135,7 +135,7 @@ public class ReviewPCui extends JInternalFrame {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            desktop.add(new RemovePartUi(pc, parent));
+            desktop1.add(new RemovePartUi(pc, parent));
         }
     }
 
