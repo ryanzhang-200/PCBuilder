@@ -46,6 +46,8 @@ public class PCLists implements Writable {
                 break;
             }
         }
+
+        EventLog.getInstance().logEvent(new Event("Selected PC " + name));
     }
 
     //EFFECTS: opens additional information for the selected PC
@@ -58,11 +60,13 @@ public class PCLists implements Writable {
         for (int i = 0; i < pcList.size(); i++) {
             PC computerLookingAt = pcList.get(i);
             if (computerLookingAt.getName().equals(pc.getName())) {
+                EventLog.getInstance().logEvent(new Event("Didn't Add PC " + pc.getName()));
                 return false;
             }
         }
 
         pcList.add(pc);
+        EventLog.getInstance().logEvent(new Event("Added PC " + pc.getName()));
         return true;
     }
 
@@ -74,9 +78,12 @@ public class PCLists implements Writable {
             PC computerLookingAt = pcList.get(i);
             if (computerLookingAt.getName().equals(name)) {
                 pcList.remove(i);
+                EventLog.getInstance().logEvent(new Event("Removed PC " + name));
                 return true;
             }
         }
+
+        EventLog.getInstance().logEvent(new Event("Didn't Remove PC " + name));
         return false;
     }
 
@@ -89,8 +96,10 @@ public class PCLists implements Writable {
             copiedName = copiedName.concat("copy");
             copiedPC = new PC(copiedName);
             pcList.add(copiedPC);
+            EventLog.getInstance().logEvent(new Event("Copied PC " + selectedComputer.getName()));
             return true;
         } else {
+            EventLog.getInstance().logEvent(new Event("Copied PC " + selectedComputer.getName()));
             return false;
         }
     }

@@ -1,5 +1,7 @@
 package persistence;
 
+import model.Event;
+import model.EventLog;
 import model.PCLists;
 import model.PC;
 
@@ -25,6 +27,7 @@ public class JsonReader {
     public PCLists read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
+        EventLog.getInstance().logEvent(new Event("Loaded file"));
         return parsePCLists(jsonObject);
     }
 

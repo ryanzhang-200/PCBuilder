@@ -3,14 +3,20 @@ package ui;
 import model.PCLists;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import model.Event;
+import model.EventLog;
 import model.PC;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -25,11 +31,12 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import exceptions.DuplicatePCException;
+import exceptions.LogException;
 import exceptions.PartAlreadyThereException;
 
 //renders the applications main window frame
 
-public class PCListUI extends JFrame {
+public class PCListUI extends JFrame implements WindowListener {
     private static final int WIDTH = 1400;
     private static final int HEIGHT = 800;
     private static final String FILE_DESCRIPTOR = "...file";
@@ -48,14 +55,15 @@ public class PCListUI extends JFrame {
 	 */
     public PCListUI() {
         pcLists = new PCLists();
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                for (Event event : EventLog.getInstance()) {
+                    System.out.println(event.toString() + "\n");
+                } 
+            }     
+        });
 		
-        desktop = new JDesktopPane();
-        desktop.addMouseListener(new DesktopFocusAction());
-        controlPanel = new JInternalFrame("Control Panel", false, false, false, false);
-        controlPanel.setLayout(new BorderLayout());
-		
+        setPCListUi();
         setContentPane(desktop);
         setTitle("PCBuilder");
         setSize(WIDTH, HEIGHT);
@@ -69,15 +77,25 @@ public class PCListUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         centreOnScreen();
         setVisible(true);
+        
     }
 
+    public void setPCListUi() {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+		
+        desktop = new JDesktopPane();
+        desktop.addMouseListener(new DesktopFocusAction());
+        controlPanel = new JInternalFrame("Control Panel", false, false, false, false);
+        controlPanel.setLayout(new BorderLayout());
+    }
 
 	/**
 	 * Helper to add control buttons.
 	 */
     private void addButtonPanel() {
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4,2));
+        buttonPanel.setLayout(new GridLayout(5,2));
         buttonPanel.add(new JButton(new AddPCAction()));
         buttonPanel.add(new JButton(new SelectedPCAction()));
         buttonPanel.add(new JButton(new ReviewPCAction()));
@@ -87,6 +105,8 @@ public class PCListUI extends JFrame {
         buttonPanel.add(new JButton(new PurchasePCAction()));
         buttonPanel.add(new JButton(new SavePCAction()));
         buttonPanel.add(new JButton(new LoadPCAction()));
+        buttonPanel.add(new JButton(new PrintLogAction()));
+        //buttonPanel.add(new JButton(new ExitApplicationAction()));
         buttonPanel.add(createPrintCombo());
 		
         controlPanel.add(buttonPanel, BorderLayout.WEST);
@@ -102,7 +122,7 @@ public class PCListUI extends JFrame {
         printCombo.addItem(SCREEN_DESCRIPTOR);
         return printCombo;
     }
-
+    
 	/**
 	 * Represents the action to be taken when the user wants to add a new
 	 * PC to PCLists.
@@ -287,6 +307,31 @@ public class PCListUI extends JFrame {
         }
     }
 
+    private class PrintLogAction extends AbstractAction {
+        PrintLogAction() {
+            super("Print log to...");
+        }
+		
+        @Override
+		public void actionPerformed(ActionEvent evt) {
+            String selected = (String) printCombo.getSelectedItem();
+            LogPrinter lp;
+            try {
+                if (selected.equals(FILE_DESCRIPTOR)) {
+                    lp = new FilePrinter();
+                } else {
+                    lp = new ScreenPrinter(PCListUI.this); 
+                    desktop.add((ScreenPrinter) lp);
+                }
+				
+                lp.printLog(EventLog.getInstance());
+            } catch (LogException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "System Error",
+						JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
 	/**
 	 * Helper to centre main application window on desktop
 	 */
@@ -310,5 +355,46 @@ public class PCListUI extends JFrame {
 	// starts the application
     public static void main(String[] args) {
         new PCListUI();
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'windowOpened'");
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'windowClosed'");
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'windowIconified'");
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'windowDeiconified'");
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'windowActivated'");
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'windowDeactivated'");
     }
 }

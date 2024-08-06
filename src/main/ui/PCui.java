@@ -57,7 +57,7 @@ public class PCui extends JInternalFrame {
     private int pcNum = 1;
 	
 	/**
-	 * Constructor sets up user interface for a given sensor
+	 * Constructor sets up user interface for a given pc
 	 * @param pc   the pc
 	 * @param parent  the parent component
 	 */

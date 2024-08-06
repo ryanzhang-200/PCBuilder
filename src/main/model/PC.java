@@ -58,8 +58,10 @@ public class PC implements Writable {
     public boolean addCase(Case box) {
         if (this.box == null) {
             this.box = box;
+            EventLog.getInstance().logEvent(new Event("Added Case " + box.getModel()));
             return true;
         }  else {
+            EventLog.getInstance().logEvent(new Event("Failed to add Case"));
             return false;
         }
     }
@@ -72,8 +74,10 @@ public class PC implements Writable {
     public boolean addCooler(Cooler cooler) {
         if (this.cooler == null) {
             this.cooler = cooler;
+            EventLog.getInstance().logEvent(new Event("Added Cooler " + cooler.getModel()));
             return true;
         }  else {
+            EventLog.getInstance().logEvent(new Event("Failed to add Cooler"));
             return false;
         }
     }
@@ -86,8 +90,10 @@ public class PC implements Writable {
     public boolean addCPU(CPU processor) {
         if (this.processor == null) {
             this.processor = processor;
+            EventLog.getInstance().logEvent(new Event("Added CPU " + processor.getModel()));
             return true;
         }  else {
+            EventLog.getInstance().logEvent(new Event("Failed to add CPU"));
             return false;
         }
     }
@@ -100,8 +106,10 @@ public class PC implements Writable {
     public boolean addMotherboard(Motherboard motherboard) {
         if (this.motherboard == null) {
             this.motherboard = motherboard;
+            EventLog.getInstance().logEvent(new Event("Added Motherboard " + motherboard.getModel()));
             return true;
         }  else {
+            EventLog.getInstance().logEvent(new Event("Failed to add Motherboard"));
             return false;
         }
     }
@@ -114,8 +122,10 @@ public class PC implements Writable {
     public boolean addOperatingSystem(OperatingSystem system) {
         if (this.system == null) {
             this.system = system;
+            EventLog.getInstance().logEvent(new Event("Added Operating System " + system.getSystemName()));
             return true;
         }  else {
+            EventLog.getInstance().logEvent(new Event("Failed to add Operating System"));
             return false;
         }
     }
@@ -128,8 +138,10 @@ public class PC implements Writable {
     public boolean addPowerSupply(PowerSupply pwrSupply) {
         if (this.pwrSupply == null) {
             this.pwrSupply = pwrSupply;
+            EventLog.getInstance().logEvent(new Event("Added Power Supply " + pwrSupply.getModel()));
             return true;
         }  else {
+            EventLog.getInstance().logEvent(new Event("Failed to add Power Supply"));
             return false;
         }
     }
@@ -140,6 +152,7 @@ public class PC implements Writable {
     //that also have no additional constrains, as many monitors can be added
     public void addMonitor(Monitor monitor) {
         this.monitor.add(monitor);
+        EventLog.getInstance().logEvent(new Event("Added Monitor " + monitor.getModel()));
     }
 
     //MODIFIES: this
@@ -147,6 +160,7 @@ public class PC implements Writable {
     //that also have no additional constrains, as many storage can be added
     public void addStorage(Storage storage) {
         this.storage.add(storage);
+        EventLog.getInstance().logEvent(new Event("Added Hard Drive " + storage.getModel()));
     }
 
     //MODIFIES: this
@@ -155,11 +169,14 @@ public class PC implements Writable {
     //If the limit is reached, return false, else return true and install the RAM
     public boolean addPartsRAM(RAM ram) {
         if (motherboard == null) {
+            EventLog.getInstance().logEvent(new Event("Failed to add RAM"));
             return false;
         } else if (motherboard.getRamSlots() <= memory.size()) {
+            EventLog.getInstance().logEvent(new Event("Failed to add RAM"));
             return false;
         } else {
             memory.add(ram);
+            EventLog.getInstance().logEvent(new Event("Added RAM " + ram.getModel()));
             return true;
         }
     }
@@ -170,12 +187,15 @@ public class PC implements Writable {
     //If the limit is reached, return false, else return true and install the GPU
     public boolean addPartsGPU(GPU gpu) {
         if (motherboard == null) {
+            EventLog.getInstance().logEvent(new Event("Failed to add GPU"));
             return false;
         } 
         if (motherboard.getGpuSlots() <= graphicsCard.size()) {
+            EventLog.getInstance().logEvent(new Event("Failed to add GPU"));
             return false;
         } else {
             graphicsCard.add(gpu);
+            EventLog.getInstance().logEvent(new Event("Added GPU " + gpu.getModel()));
             return true;
         }
     }
@@ -185,11 +205,13 @@ public class PC implements Writable {
     //if there are no RAM sticks, returns false otherwise return true
     public boolean removeRAM(String ram) {
         if (memory.isEmpty()) {
+            EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
             for (int i = 0; i < memory.size(); i++) {
                 if (memory.get(i).getModel().equals(ram)) {
                     memory.remove(i);
+                    EventLog.getInstance().logEvent(new Event("Removed RAM " + ram));
                     return true;
                 }
             }
@@ -202,11 +224,13 @@ public class PC implements Writable {
     //if there are no GPUs, returns false otherwise return true
     public boolean removeGPU(String gpu) {
         if (graphicsCard.isEmpty()) {
+            EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
             for (int i = 0; i < graphicsCard.size(); i++) {
                 if (graphicsCard.get(i).getModel().equals(gpu)) {
                     graphicsCard.remove(i);
+                    EventLog.getInstance().logEvent(new Event("Removed GPU " + gpu));
                     return true;
                 }
             }
@@ -219,11 +243,13 @@ public class PC implements Writable {
     //if there are no monitors return false otherwise return true
     public boolean removeMonitor(String monitorName) {
         if (monitor.isEmpty()) {
+            EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
             for (int i = 0; i < monitor.size(); i++) {
                 if (monitor.get(i).getModel().equals(monitorName)) {
                     monitor.remove(i);
+                    EventLog.getInstance().logEvent(new Event("Removed Monitor " + monitorName));
                     return true;
                 }
             }
@@ -236,11 +262,13 @@ public class PC implements Writable {
     //if there are no storage return false otherwise return true
     public boolean removeStorage(String storageName) {
         if (storage.isEmpty()) {
+            EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
             for (int i = 0; i < storage.size(); i++) {
                 if (storage.get(i).getModel().equals(storageName)) {
                     storage.remove(i);
+                    EventLog.getInstance().logEvent(new Event("Removed Hard Drive " + storageName));
                     return true;
                 }
             }
@@ -253,9 +281,11 @@ public class PC implements Writable {
     // if there is no case return false otherwise return true
     public boolean removeCase() {
         if (box == null) {
+            EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
             box = null;
+            EventLog.getInstance().logEvent(new Event("Removed case " + box.getModel()));
             return true;
         }
     }
@@ -265,9 +295,11 @@ public class PC implements Writable {
     // if there is no case return false otherwise return true
     public boolean removeCooler() {
         if (cooler == null) {
+            EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
             cooler = null;
+            EventLog.getInstance().logEvent(new Event("Removed Cooler " + cooler.getModel()));
             return true;
         }
     }
@@ -277,9 +309,11 @@ public class PC implements Writable {
     // if there is no case return false otherwise return true
     public boolean removeCPU() {
         if (processor == null) {
+            EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
             processor = null;
+            EventLog.getInstance().logEvent(new Event("Removed CPU " + processor.getModel()));
             return true;
         }
     }
@@ -289,9 +323,11 @@ public class PC implements Writable {
     // if there is no case return false otherwise return true
     public boolean removeMotherboard() {
         if (motherboard == null) {
+            EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
             motherboard = null;
+            EventLog.getInstance().logEvent(new Event("Removed Motherboard " + motherboard.getModel()));
             return true;
         }
     }
@@ -301,9 +337,11 @@ public class PC implements Writable {
     // if there is no case return false otherwise return true
     public boolean removeOperatingSystem() {
         if (system == null) {
+            EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
             system = null;
+            EventLog.getInstance().logEvent(new Event("Removed Operating System " + system.getSystemName()));
             return true;
         }
     }
@@ -313,9 +351,11 @@ public class PC implements Writable {
     // if there is no case return false otherwise return true
     public boolean removePowerSupply() {
         if (pwrSupply == null) {
+            EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
             pwrSupply = null;
+            EventLog.getInstance().logEvent(new Event("Removed Power Supply " + pwrSupply.getModel()));
             return true;
         }
     }
