@@ -99,7 +99,6 @@ public class PCLists implements Writable {
             EventLog.getInstance().logEvent(new Event("Copied PC " + selectedComputer.getName()));
             return true;
         } else {
-            EventLog.getInstance().logEvent(new Event("Copied PC " + selectedComputer.getName()));
             return false;
         }
     }

@@ -278,8 +278,8 @@ public class PC implements Writable {
             EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
-            box = null;
             EventLog.getInstance().logEvent(new Event("Removed case " + box.getModel()));
+            box = null;
             return true;
         }
     }
@@ -292,8 +292,8 @@ public class PC implements Writable {
             EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
-            cooler = null;
             EventLog.getInstance().logEvent(new Event("Removed Cooler " + cooler.getModel()));
+            cooler = null;
             return true;
         }
     }
@@ -306,8 +306,8 @@ public class PC implements Writable {
             EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
-            processor = null;
             EventLog.getInstance().logEvent(new Event("Removed CPU " + processor.getModel()));
+            processor = null;
             return true;
         }
     }
@@ -320,8 +320,8 @@ public class PC implements Writable {
             EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
-            motherboard = null;
             EventLog.getInstance().logEvent(new Event("Removed Motherboard " + motherboard.getModel()));
+            motherboard = null;
             return true;
         }
     }
@@ -334,8 +334,8 @@ public class PC implements Writable {
             EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
-            system = null;
             EventLog.getInstance().logEvent(new Event("Removed Operating System " + system.getSystemName()));
+            system = null;
             return true;
         }
     }
@@ -348,8 +348,8 @@ public class PC implements Writable {
             EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
-            pwrSupply = null;
             EventLog.getInstance().logEvent(new Event("Removed Power Supply " + pwrSupply.getModel()));
+            pwrSupply = null;
             return true;
         }
     }
