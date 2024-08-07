@@ -31,6 +31,8 @@ import ui.reviewingui.AddPartUi;
 import ui.reviewingui.RemovePartUi;
 import ui.reviewingui.ReturnCostsUi;
 
+//Renders the ReviewPCui
+
 public class ReviewPCui extends JInternalFrame {
     private static final int WIDTH = 400;
     private static final int HEIGHT = 800;
@@ -43,7 +45,7 @@ public class ReviewPCui extends JInternalFrame {
     private Component parent;
 
     /**
-	 * Constructor sets up button panel and window for reviewing individual PCs
+	 * EFFECTS: Constructor sets up button panel and window for reviewing individual PCs
      * gives the options to add part, remove part, return costs and change name
      * @param pc   the pc
 	 * @param parent  the parent component
@@ -74,7 +76,7 @@ public class ReviewPCui extends JInternalFrame {
     }
 
     /**
-	 * Helper to centre main application window on desktop
+	 * EFFECTS: Helper to centre main application window on desktop
 	 */
     private void centreOnScreen() {
         int width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -83,7 +85,7 @@ public class ReviewPCui extends JInternalFrame {
     }
 
 	/**
-	 * Represents action to be taken when user clicks desktop
+	 * EFFECTS: Represents action to be taken when user clicks desktop
 	 * to switch focus. (Needed for key handling.)
 	 */
     private class DesktopFocusAction extends MouseAdapter {
@@ -94,7 +96,7 @@ public class ReviewPCui extends JInternalFrame {
     }
 
     /**
-	 * Helper to add control buttons to add parts.
+	 * EFFECTS: Helper to add control buttons to add parts.
 	 */
     private void addButtonPanel() {
         JPanel buttonPanel = new JPanel();
@@ -107,7 +109,8 @@ public class ReviewPCui extends JInternalFrame {
     }
 
     /**
-	 * Represents the action to be taken when the user wants to add a new
+     *  // MODIFIES: pc
+	 * EFFECTS: Represents the action to be taken when the user wants to add a new
 	 * Part to PC. Allows which part to be selected
 	 */
     private class AddPartAction extends AbstractAction {
@@ -123,7 +126,8 @@ public class ReviewPCui extends JInternalFrame {
     }
 
     /**
-	 * Represents the action to be taken when the user wants to remove a new
+     *  // MODIFIES: pc
+	 * EFFECTS: Represents the action to be taken when the user wants to remove a new
 	 * Part to PC. Allows which part to be selected
 	 */
     private class RemovePartAction extends AbstractAction {
@@ -139,7 +143,7 @@ public class ReviewPCui extends JInternalFrame {
     }
 
     /**
-	 * Represents the action to be taken when the user wants to return costs
+	 * EFFECTS: Represents the action to be taken when the user wants to return costs
 	 * of parts of pc
 	 */
     private class ReturnCostsAction extends AbstractAction {
@@ -155,7 +159,7 @@ public class ReviewPCui extends JInternalFrame {
     } 
 
     /**
-	 * Represents the action to be taken when the user wants to change pc name
+	 * EFFECTS: Represents the action to be taken when the user wants to change pc name
 	 * 
 	 */
     private class ChangeNameAction extends AbstractAction {
@@ -175,7 +179,7 @@ public class ReviewPCui extends JInternalFrame {
     }
 
     /**
-	 * Sets the position of this Reviewing PC UI relative to parent component
+	 * EFFECTS: Sets the position of this Reviewing PC UI relative to parent component
 	 * @param parent  the parent component
 	 */
     private void setPosition(Component parent) {

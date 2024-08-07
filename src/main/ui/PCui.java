@@ -57,7 +57,7 @@ public class PCui extends JInternalFrame {
     private int pcNum = 1;
 	
 	/**
-	 * Constructor sets up user interface for a given pc
+	 * EFFECTS: Constructor sets up user interface for a given pc
 	 * @param pc   the pc
 	 * @param parent  the parent component
 	 */
@@ -84,7 +84,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-     * Puts ImageIcon into the Frame and transforms it
+     * EFFECTS: Puts ImageIcon into the Frame and transforms it
      */
     protected void printImage(Container cp) {
         ImageIcon pcImage = new ImageIcon("images/PCImg.jpg"); 
@@ -96,7 +96,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-     * Creates an ImageIcon if the path is valid.
+     * EFFECTS: Creates an ImageIcon if the path is valid.
      */
     protected ImageIcon createImageIcon(String path) {
         java.net.URL imgURL = PCui.class.getResource(path);
@@ -109,7 +109,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Stores the JTextFields to the individual part names
+	 * EFFECTS: Stores the JTextFields to the individual part names
 	 * @param pc   the pc
      * @param pc   the container
 	 */
@@ -138,7 +138,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Stores the JTextFields to the individual part names the brilliant sequal
+	 * EFFECTS: Stores the JTextFields to the individual part names the brilliant sequal
 	 * @param pc   the pc
      * @param pc   the container
 	 */
@@ -164,7 +164,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Stores the JTextFields to the individual part names the shitty trilogy
+	 * EFFECTS: Stores the JTextFields to the individual part names the shitty trilogy
 	 * @param pc   the pc
      * @param pc   the container
 	 */
@@ -191,7 +191,7 @@ public class PCui extends JInternalFrame {
     }
 
      /**
-	 * Stores the JTextFields for the Case model
+	 * EFFECTS: Stores the JTextFields for the Case model
 	 * @param pc   the pc
 	 */
     public void writeCaseName(PC pc) throws NoPartException {
@@ -204,7 +204,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Stores the JTextFields for the Cooler model
+	 * EFFECTS: Stores the JTextFields for the Cooler model
 	 * @param pc   the pc
 	 */
     public void writeCoolerName(PC pc) throws NoPartException {
@@ -217,7 +217,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Stores the JTextFields for the CPU model
+	 * EFFECTS: Stores the JTextFields for the CPU model
 	 * @param pc   the pc
 	 */
     public void writeCpuName(PC pc) throws NoPartException {
@@ -230,7 +230,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Stores the JTextFields for the GPU models
+	 * EFFECTS: Stores the JTextFields for the GPU models
 	 * @param pc   the pc
 	 */
     public void writeGpuNames(PC pc) throws NoPartException {
@@ -250,7 +250,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Stores the JTextFields for the Monitor models
+	 * EFFECTS: Stores the JTextFields for the Monitor models
 	 * @param pc   the pc
 	 */
     public void writeMonitorNames(PC pc) throws NoPartException {
@@ -270,7 +270,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Stores the JTextFields for the Motherboard model
+	 * EFFECTS: Stores the JTextFields for the Motherboard model
 	 * @param pc   the pc
 	 */
     public void writeMotherboardName(PC pc) throws NoPartException {
@@ -283,7 +283,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Stores the JTextFields for the Operating System model
+	 * EFFECTS: Stores the JTextFields for the Operating System model
 	 * @param pc   the pc
 	 */
     public void writeOperatingSystemName(PC pc) throws NoPartException {
@@ -296,7 +296,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Stores the JTextFields for the Power Supply model
+	 * EFFECTS: Stores the JTextFields for the Power Supply model
 	 * @param pc   the pc
 	 */
     public void writePowerSupplyName(PC pc) throws NoPartException {
@@ -309,7 +309,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Stores the JTextFields for the RAM models
+	 * EFFECTS: Stores the JTextFields for the RAM models
 	 * @param pc   the pc
 	 */
     public void writeRamNames(PC pc) throws NoPartException {
@@ -329,7 +329,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Stores the JTextFields for the Storage models
+	 * EFFECTS: Stores the JTextFields for the Storage models
 	 * @param pc   the pc
 	 */
     public void writeStorageNames(PC pc) throws NoPartException {
@@ -349,7 +349,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Displays the individual part names
+	 * EFFECTS:  Displays the individual part names
 	 * @param pc   the pc
      * @param pc   the container
 	 */
@@ -367,7 +367,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Display all the GPU models
+	 * EFFECTS: Display all the GPU models
 	 * @param pc   the pc
 	 */
     public void displayGpuNames(Container cp) {
@@ -377,7 +377,7 @@ public class PCui extends JInternalFrame {
     }
 	
     /**
-	 * Display all the Monitor models
+	 * EFFECTS: Display all the Monitor models
 	 * @param pc   the pc
 	 */
     public void displayMonitorNames(Container cp) {
@@ -387,7 +387,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 *  Display all the Ram models
+	 *  EFFECTS: Display all the Ram models
 	 * @param pc   the pc
 	 */
     public void displayRamNames(Container cp) {
@@ -397,7 +397,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 *  Display all the Storage models
+	 *  EFFECTS: Display all the Storage models
 	 * @param pc   the pc
 	 */
     public void displayStorageNames(Container cp) {
@@ -407,7 +407,7 @@ public class PCui extends JInternalFrame {
     }
 
     /**
-	 * Sets the position of this PC UI relative to parent component
+	 * EFFECTS: Sets the position of this PC UI relative to parent component
 	 * @param parent  the parent component
 	 */
     private void setPosition(Component parent) {

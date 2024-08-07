@@ -50,7 +50,8 @@ public class PCListUI extends JFrame implements WindowListener {
     private static final String JSON_STORE = "./data/pclist.json";
 
     /**
-	 * Constructor sets up button panel and window
+     *  // MODIFIES: this
+	 *EFFECTS:  Constructor sets up button panel and window
 	 */
     public PCListUI() {
         pcLists = new PCLists();
@@ -79,6 +80,10 @@ public class PCListUI extends JFrame implements WindowListener {
         
     }
 
+     /**
+     *  // MODIFIES: this
+	 *EFFECTS:  Constructor sets up button panel and window
+	 */
     public void setPCListUi() {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
@@ -90,7 +95,7 @@ public class PCListUI extends JFrame implements WindowListener {
     }
 
 	/**
-	 * Helper to add control buttons.
+	 * EFFECTS: Helper to add control buttons.
 	 */
     private void addButtonPanel() {
         JPanel buttonPanel = new JPanel();
@@ -112,7 +117,7 @@ public class PCListUI extends JFrame implements WindowListener {
     }
 
 	/**
-	 * Helper to create print options combo box
+	 * EFFECTS: Helper to create print options combo box
 	 * @return  the combo box
 	 */
     private JComboBox<String> createPrintCombo() {
@@ -123,7 +128,8 @@ public class PCListUI extends JFrame implements WindowListener {
     }
     
 	/**
-	 * Represents the action to be taken when the user wants to add a new
+     *  // MODIFIES: pcLists
+	 * EFFECTS: Represents the action to be taken when the user wants to add a new
 	 * PC to PCLists.
 	 */
     private class AddPCAction extends AbstractAction {
@@ -146,7 +152,8 @@ public class PCListUI extends JFrame implements WindowListener {
     }
 
     /**
-	 * Represents the action to be taken when the user wants to select a new
+     *  // MODIFIES: pcLists
+	 * EFFECTS: Represents the action to be taken when the user wants to select a new
 	 * PC
 	 */
     private class SelectedPCAction extends AbstractAction {
@@ -168,7 +175,7 @@ public class PCListUI extends JFrame implements WindowListener {
     }
 
     /**
-	 * Represents the action to be taken when the user wants to review 
+	 * EFFECTS: Represents the action to be taken when the user wants to review 
 	 * Selected PC.
 	 */
     private class ReviewPCAction extends AbstractAction {
@@ -190,7 +197,7 @@ public class PCListUI extends JFrame implements WindowListener {
     }
 
     /**
-	 * Represents the action to be taken when the user wants to view all pcs
+	 * EFFECTS: Represents the action to be taken when the user wants to view all pcs
 	 * from PCLists.
 	 */
     private class ViewPCAction extends AbstractAction {
@@ -208,7 +215,8 @@ public class PCListUI extends JFrame implements WindowListener {
     }
 
     /**
-	 * Represents the action to be taken when the user wants to remove a pc
+     *  // MODIFIES: pcLists
+	 * EFFECTS: Represents the action to be taken when the user wants to remove a pc
 	 * from pc lists.
 	 */
     private class RemovePCAction extends AbstractAction {
@@ -229,7 +237,8 @@ public class PCListUI extends JFrame implements WindowListener {
     }
 
     /**
-	 * Represents the action to be taken when the user wants to copy a
+     *  // MODIFIES: pcList
+	 * EFFECTS: Represents the action to be taken when the user wants to copy a
 	 * PC from a PC in PCLists.
 	 */
     private class CopyPCAction extends AbstractAction {
@@ -245,7 +254,7 @@ public class PCListUI extends JFrame implements WindowListener {
     }
 
     /**
-	 * Represents the action to be taken when the user wants to purchase a new
+	 * EFFECTS: Represents the action to be taken when the user wants to purchase a new
 	 * PC to PCLists.
 	 */
     private class PurchasePCAction extends AbstractAction {
@@ -261,7 +270,7 @@ public class PCListUI extends JFrame implements WindowListener {
     }
 
     /**
-	 * Represents the action to be taken when the user wants save existing 
+	 * EFFECTS: Represents the action to be taken when the user wants save existing 
 	 * PCs in PCLists.
 	 */
     private class SavePCAction extends AbstractAction {
@@ -284,7 +293,7 @@ public class PCListUI extends JFrame implements WindowListener {
     }
 
     /**
-	 * Represents the action to be taken when the user wants to load 
+	 * EFFECTS: Represents the action to be taken when the user wants to load 
 	 * an existing PCList
 	 */
     private class LoadPCAction extends AbstractAction {
@@ -332,7 +341,7 @@ public class PCListUI extends JFrame implements WindowListener {
     }
 
 	/**
-	 * Helper to centre main application window on desktop
+	 * EFFECTS: Helper to centre main application window on desktop
 	 */
     private void centreOnScreen() {
         int width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -341,7 +350,7 @@ public class PCListUI extends JFrame implements WindowListener {
     }
 
 	/**
-	 * Represents action to be taken when user clicks desktop
+	 * EFFECTS: Represents action to be taken when user clicks desktop
 	 * to switch focus. (Needed for key handling.)
 	 */
     private class DesktopFocusAction extends MouseAdapter {
