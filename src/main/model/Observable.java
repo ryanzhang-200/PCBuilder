@@ -9,22 +9,22 @@ public abstract class Observable {
 	/**
 	 * Constructor creates an empty list of observers
 	 */
-	public Observable() {
-		observers = new ArrayList<Observer>();
-	}
+    public Observable() {
+        observers = new ArrayList<Observer>();
+    }
 	
 	/**
 	 * Adds an observer to the list of observers
 	 * @param o the observer to be added
 	 */
-	public void addObserver(Observer o) {
-		observers.add(o);
-	}
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
 	
 	/**
 	 * Notifies the observers when a change occurs
 	 * in the status of this Observable.
 	 */
-	public abstract void notifyObservers();
+    public abstract void notifyObservers();
 }
 

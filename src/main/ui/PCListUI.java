@@ -42,7 +42,6 @@ public class PCListUI extends JFrame implements WindowListener {
     private static final String FILE_DESCRIPTOR = "...file";
     private static final String SCREEN_DESCRIPTOR = "...screen";
     private PCLists pcLists;
-    private PCui input;
     private JComboBox<String> printCombo;
     private JDesktopPane desktop;
     private JInternalFrame controlPanel;
