@@ -14,6 +14,7 @@ public class PowerSupply implements Parts {
         cost = 100;
         power = 50;
     }
+    
     //EFFECTS: returns the model as a string
     public String getModel() {
         return model;

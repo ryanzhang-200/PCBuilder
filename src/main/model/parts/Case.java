@@ -17,9 +17,10 @@ public class Case implements Parts {
         width = 15;
         length = 40;
     }
+    
     //EFFECTS: returns the model as a string
     public String getModel() {
-       return model;
+        return model;
     }
 
     //EFFECTS: returns the cost of the case as a int
