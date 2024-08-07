@@ -37,3 +37,25 @@ As a user I would like to be able to log in and access my previously worked on l
 - You can locate my visual component by pressing the Add PC button, which will load up an image of the PC
 - You can save the state of my application by pressing the "Save PC" button
 - You can reload the state of my application by pressing the "Load PC" button
+
+Phase 4, Task 2:
+Tue Aug 06 21:27:41 PDT 2024
+Added PC pc1
+
+Tue Aug 06 21:27:46 PDT 2024
+Selected PC pc1
+
+Tue Aug 06 21:27:54 PDT 2024
+Added Case case
+
+Tue Aug 06 21:27:58 PDT 2024
+Added CPU intel i5
+
+Tue Aug 06 21:28:07 PDT 2024
+Saved file
+
+Tue Aug 06 21:28:11 PDT 2024
+Copied PC pc1
+
+Phase 4 Task 3:
+Given more time on this project, I would have conducted a massive amount of refactoring. I finished phase 1 before I understood interfaces, abstracts and extends. For my class PC, the individual parts in it were relatively similar, sharing 2 common methods, getCost() and getModel() (OperatingSystem's getSystemName() method is functionally the same to getModel()) with the other methods being relatively similar stats. Doing this would allowed me to shink my PC function by at least 75%. Instead of having individual add(insert part)() and remove(insert part)() methods for each and every part, it could have simply be addPart() and removePart() with Part being a common interface. Furthermore, this would have allowed to massively cutdown on code in other parts of the code. Anywhere with functions that take one of the many implementation of Parts could have been condensed into one function instead of many. Another thing I would have done is to improve the UI. The UI as is stands works, but is massively chunky, requiring to constantly press "View PC" to get updates on parts. Furthermore, the "View PC" button doesn't open up one window but as many windows as there are PCs. Another thing that we learned too late in the course to be useful would be the Observable and Observer interfaces, many times in my code, if I had constantly updating code, I could have made my UI much more efficient. 

@@ -61,7 +61,6 @@ public class PC implements Writable {
             EventLog.getInstance().logEvent(new Event("Added Case " + box.getModel()));
             return true;
         }  else {
-            EventLog.getInstance().logEvent(new Event("Failed to add Case"));
             return false;
         }
     }
@@ -77,7 +76,6 @@ public class PC implements Writable {
             EventLog.getInstance().logEvent(new Event("Added Cooler " + cooler.getModel()));
             return true;
         }  else {
-            EventLog.getInstance().logEvent(new Event("Failed to add Cooler"));
             return false;
         }
     }
@@ -93,7 +91,6 @@ public class PC implements Writable {
             EventLog.getInstance().logEvent(new Event("Added CPU " + processor.getModel()));
             return true;
         }  else {
-            EventLog.getInstance().logEvent(new Event("Failed to add CPU"));
             return false;
         }
     }
@@ -109,7 +106,6 @@ public class PC implements Writable {
             EventLog.getInstance().logEvent(new Event("Added Motherboard " + motherboard.getModel()));
             return true;
         }  else {
-            EventLog.getInstance().logEvent(new Event("Failed to add Motherboard"));
             return false;
         }
     }
@@ -125,7 +121,6 @@ public class PC implements Writable {
             EventLog.getInstance().logEvent(new Event("Added Operating System " + system.getSystemName()));
             return true;
         }  else {
-            EventLog.getInstance().logEvent(new Event("Failed to add Operating System"));
             return false;
         }
     }
@@ -141,7 +136,6 @@ public class PC implements Writable {
             EventLog.getInstance().logEvent(new Event("Added Power Supply " + pwrSupply.getModel()));
             return true;
         }  else {
-            EventLog.getInstance().logEvent(new Event("Failed to add Power Supply"));
             return false;
         }
     }
