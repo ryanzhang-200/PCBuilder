@@ -15,7 +15,7 @@ public class FilePrinter implements LogPrinter {
     private FileWriter fw;
 	
 	/**
-	 * Constructor creates file.  Each log file has a sequential log number
+	 * EFFECTS: Constructor creates file.  Each log file has a sequential log number
 	 * starting at LOG_INIT for each run of the application.
 	 * @throws LogException when any kind of input/output error occurs
 	 */

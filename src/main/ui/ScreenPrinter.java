@@ -15,7 +15,7 @@ public class ScreenPrinter extends JInternalFrame implements LogPrinter {
     private JTextArea logArea;
 	
 	/**
-	 * Constructor sets up window in which log will be printed on screen
+	 * EFFECTS: Constructor sets up window in which log will be printed on screen
 	 * @param parent  the parent component
 	 */
     public ScreenPrinter(Component parent) {
@@ -39,7 +39,7 @@ public class ScreenPrinter extends JInternalFrame implements LogPrinter {
     }
 	
 	/**
-	 * Sets the position of window in which log will be printed relative to 
+	 * EFFECTS: Sets the position of window in which log will be printed relative to 
 	 * parent
 	 * @param parent  the parent component
 	 */
