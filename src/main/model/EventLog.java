@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-
+//Represents an List of events during the operating of the code
 public class EventLog implements Iterable<Event> {
     /** the only EventLog in the system (Singleton Design Pattern) */
     private static EventLog theLog;

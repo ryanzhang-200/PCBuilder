@@ -3,7 +3,7 @@ package model;
 import java.util.Calendar;
 import java.util.Date;
 
-
+//Represents an event during the operating of the code
 public class Event {
     private static final int HASH_CONSTANT = 13;
     private Date dateLogged;
