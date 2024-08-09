@@ -43,6 +43,7 @@ public class AddPartUi extends JInternalFrame {
     private PC pc;
 
     /**
+     * EFFECTS:
 	 * Constructor sets up button panel and window for adding part to the selected pc
      * gives the options to add part, remove part, return costs and change name
      * @param pc   the pc
@@ -74,7 +75,7 @@ public class AddPartUi extends JInternalFrame {
     }
 
     /**
-	 * Helper to add control buttons to add parts.
+	 * EFFECTS: Helper to add control buttons to add parts.
 	 */
     private void addButtonPanel() {
         JPanel buttonPanel = new JPanel();
@@ -102,7 +103,8 @@ public class AddPartUi extends JInternalFrame {
     }
 
      /**
-	 * adds case, allows user to select model
+      * MODIFIES: pc
+	 * EFFECTS: adds case, allows user to select model
      * if there is a case, throws PartAlreadyThereException
 	 */
     private class CaseAction extends AbstractAction {
@@ -131,7 +133,8 @@ public class AddPartUi extends JInternalFrame {
     }
 
     /**
-	 * adds cooler, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: adds cooler, allows user to select model
      * if there is a cooler, throws PartAlreadyThereException
 	 */
     private class CoolerAction extends AbstractAction {
@@ -159,7 +162,8 @@ public class AddPartUi extends JInternalFrame {
     }
 
     /**
-	 * adds CPU, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: adds CPU, allows user to select model
      * if there is a CPU, throws PartAlreadyThereException
 	 */
     private class CpuAction extends AbstractAction {
@@ -187,7 +191,8 @@ public class AddPartUi extends JInternalFrame {
     }
 
     /**
-	 * adds GPU, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: adds GPU, allows user to select model
      * if GPU is maxed out, throws PartAlreadyThereException
 	 */
     private class GpuAction extends AbstractAction {
@@ -215,7 +220,8 @@ public class AddPartUi extends JInternalFrame {
     }
 
     /**
-	 * adds monitor, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: adds monitor, allows user to select model
 	 */
     private class MonitorAction extends AbstractAction {
 
@@ -234,7 +240,8 @@ public class AddPartUi extends JInternalFrame {
     }
 
     /**
-	 * adds motherboard, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: adds motherboard, allows user to select model
      * if there is a motherboard, throws PartAlreadyThereException
 	 */
     private class MotherboardAction extends AbstractAction {
@@ -262,7 +269,8 @@ public class AddPartUi extends JInternalFrame {
     }
 
     /**
-	 * adds operating system, allows user to select system
+     * MODIFIES: pc
+	 * EFFECTS: adds operating system, allows user to select system
      * if there is a operating system, throws PartAlreadyThereException
 	 */
     private class OperatingSystemAction extends AbstractAction {
@@ -290,7 +298,8 @@ public class AddPartUi extends JInternalFrame {
     }
 
     /**
-	 * adds power supply, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: adds power supply, allows user to select model
      * if there is a power supply, throws PartAlreadyThereException
 	 */
     private class PowerSupplyAction extends AbstractAction {
@@ -318,7 +327,8 @@ public class AddPartUi extends JInternalFrame {
     }
 
     /**
-	 * adds RAM, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: adds RAM, allows user to select model
      * if RAM is maxed out, throws PartAlreadyThereException
 	 */
     private class RamAction extends AbstractAction {
@@ -346,7 +356,7 @@ public class AddPartUi extends JInternalFrame {
     }
 
     /**
-	 * adds storage, allows user to select model
+	 * EFFECTS: adds storage, allows user to select model
 	 */
     private class StorageAction extends AbstractAction {
 
@@ -365,7 +375,7 @@ public class AddPartUi extends JInternalFrame {
     }
 
     /**
-	 * Helper to centre main application window on desktop
+	 * EFFECTS: Helper to centre main application window on desktop
 	 */
     private void centreOnScreen() {
         int width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -374,7 +384,7 @@ public class AddPartUi extends JInternalFrame {
     }
 
 	/**
-	 * Represents action to be taken when user clicks desktop
+	 * EFFECTS: Represents action to be taken when user clicks desktop
 	 * to switch focus. (Needed for key handling.)
 	 */
     private class DesktopFocusAction extends MouseAdapter {

@@ -28,7 +28,7 @@ public class RemovePartUi extends JInternalFrame {
     private PC pc;
 
     /**
-	 * Constructor sets up button panel and window for removing parts from the selected pc
+	 * EFFECTS: Constructor sets up button panel and window for removing parts from the selected pc
      * gives the options to add part, remove part, return costs and change name
      * @param pc   the pc
 	 * @param parent  the parent component
@@ -59,7 +59,7 @@ public class RemovePartUi extends JInternalFrame {
     }
 
     /**
-	 * Helper to add control buttons to add parts.
+	 * EFFECTS: Helper to add control buttons to add parts.
 	 */
     private void addButtonPanel() {
         JPanel buttonPanel = new JPanel();
@@ -79,7 +79,8 @@ public class RemovePartUi extends JInternalFrame {
     }
 
     /**
-	 * removes case, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: removes case, allows user to select model
      * if there is no case, throws NoPartException
 	 */
     private class CaseAction extends AbstractAction {
@@ -108,7 +109,8 @@ public class RemovePartUi extends JInternalFrame {
     }
 
     /**
-	 * removes cooler, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: removes cooler, allows user to select model
      * if there is no cooler, throws NoPartException
 	 */
     private class CoolerAction extends AbstractAction {
@@ -136,7 +138,8 @@ public class RemovePartUi extends JInternalFrame {
     }
 
     /**
-	 * removes cpu, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: removes cpu, allows user to select model
      * if there is no cpu, throws NoPartException
 	 */
     private class CpuAction extends AbstractAction {
@@ -164,7 +167,8 @@ public class RemovePartUi extends JInternalFrame {
     }
 
     /**
-	 * removes gpu, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: removes gpu, allows user to select model
      * if there are no gpu, throws NoPartException
 	 */
     private class GpuAction extends AbstractAction {
@@ -192,7 +196,8 @@ public class RemovePartUi extends JInternalFrame {
     }
 
     /**
-	 * removes monitor, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: removes monitor, allows user to select model
      * if there are no monitor, throws NoPartException
 	 */
     private class MonitorAction extends AbstractAction {
@@ -220,7 +225,8 @@ public class RemovePartUi extends JInternalFrame {
     }
 
     /**
-	 * removes motherboard, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: removes motherboard, allows user to select model
      * if there is no motherboard, throws NoPartException
 	 */
     private class MotherboardAction extends AbstractAction {
@@ -248,7 +254,8 @@ public class RemovePartUi extends JInternalFrame {
     }
 
     /**
-	 * removes operatingsystem, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: removes operatingsystem, allows user to select model
      * if there is no operatingsystem, throws NoPartException
 	 */
     private class OperatingSystemAction extends AbstractAction {
@@ -276,7 +283,8 @@ public class RemovePartUi extends JInternalFrame {
     }
 
     /**
-	 * removes power supply, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: removes power supply, allows user to select model
      * if there is no supply, throws NoPartException
 	 */
     private class PowerSupplyAction extends AbstractAction {
@@ -304,7 +312,8 @@ public class RemovePartUi extends JInternalFrame {
     }
 
     /**
-	 * removes RAM, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: removes RAM, allows user to select model
      * if there is no RAM, throws NoPartException
 	 */
     private class RamAction extends AbstractAction {
@@ -332,7 +341,8 @@ public class RemovePartUi extends JInternalFrame {
     }
 
     /**
-	 * removes storage, allows user to select model
+     * MODIFIES: pc
+	 * EFFECTS: removes storage, allows user to select model
      * if there is no storage, throws NoPartException
 	 */
     private class StorageAction extends AbstractAction {
@@ -360,7 +370,7 @@ public class RemovePartUi extends JInternalFrame {
     }
 
     /**
-	 * Helper to centre main application window on desktop
+	 * EFFECTS: Helper to centre main application window on desktop
 	 */
     private void centreOnScreen() {
         int width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -369,7 +379,7 @@ public class RemovePartUi extends JInternalFrame {
     }
 
 	/**
-	 * Represents action to be taken when user clicks desktop
+	 * EFFECTS: Represents action to be taken when user clicks desktop
 	 * to switch focus. (Needed for key handling.)
 	 */
     private class DesktopFocusAction extends MouseAdapter {
@@ -380,7 +390,7 @@ public class RemovePartUi extends JInternalFrame {
     }
 
     /**
-	 * Sets the position of this Reviewing PC UI relative to parent component
+	 * EFFECTS: Sets the position of this Reviewing PC UI relative to parent component
 	 * @param parent  the parent component
 	 */
     private void setPosition(Component parent) {

@@ -17,7 +17,7 @@ public class ReturnCostsUi extends JInternalFrame {
     private JTextField displayPcName;
 
     /**
-	 * Constructor sets up button panel and window for showing the total cost
+	 * EFFECTS: Constructor sets up button panel and window for showing the total cost
      * and the individual costs of the parts from the PC
      * @param pc   the pc
 	 */
