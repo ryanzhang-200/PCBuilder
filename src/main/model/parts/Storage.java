@@ -1,28 +1,22 @@
 package model.parts;
 
-public class Storage implements Parts {
+public class Storage extends Parts {
     private int capacity;
     private int speed;
     private Boolean ssd;
     private String type;
-    private String model;
     private int cost;
 
     //EFFECTS:a model name for a hard drive/ssd is given
     //creates an a hard drive/ssd with a certain characteristics
     //(To be added: a database with all different models having different specs)
     public Storage(String model) {
-        this.model = model;
+        super(model);
         cost = 100;
         capacity = 512;
         speed = 2160;
         ssd = false;
         type = "15000";
-    }
-
-    //EFFECTS: returns the model as a string
-    public String getModel() {
-        return model;
     }
 
     //EFFECTS: returns the cost of each hard drive/ssd as a String

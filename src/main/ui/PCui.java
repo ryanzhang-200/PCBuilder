@@ -290,7 +290,7 @@ public class PCui extends JInternalFrame {
         if (pc.getOperatingSystem() == null) {
             throw new NoPartException();
         }
-        pcOperatingSystem = new JTextField("Operating System: " + pc.getOperatingSystem().getSystemName());
+        pcOperatingSystem = new JTextField("Operating System: " + pc.getOperatingSystem().getModel());
         pcOperatingSystem.setEditable(false);
         pcOperatingSystem.setAlignmentX(CENTER_ALIGNMENT);
     }

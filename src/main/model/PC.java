@@ -118,7 +118,7 @@ public class PC implements Writable {
     public boolean addOperatingSystem(OperatingSystem system) {
         if (this.system == null) {
             this.system = system;
-            EventLog.getInstance().logEvent(new Event("Added Operating System " + system.getSystemName()));
+            EventLog.getInstance().logEvent(new Event("Added Operating System " + system.getModel()));
             return true;
         }  else {
             return false;
@@ -334,7 +334,7 @@ public class PC implements Writable {
             EventLog.getInstance().logEvent(new Event("Nothing to Remove"));
             return false;
         } else {
-            EventLog.getInstance().logEvent(new Event("Removed Operating System " + system.getSystemName()));
+            EventLog.getInstance().logEvent(new Event("Removed Operating System " + system.getModel()));
             system = null;
             return true;
         }

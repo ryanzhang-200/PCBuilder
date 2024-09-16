@@ -1,7 +1,6 @@
 package model.parts;
 
-public class Case implements Parts {
-    private String model;
+public class Case extends Parts {
     private int cost;
     private int height;
     private int width;
@@ -11,16 +10,11 @@ public class Case implements Parts {
     //creates an a case with a certain characteristics
     //(To be added: a database with all different models having different specs)
     public Case(String model) {
-        this.model = model;
+        super(model);
         cost = 100;
         height = 50;
         width = 15;
         length = 40;
-    }
-    
-    //EFFECTS: returns the model as a string
-    public String getModel() {
-        return model;
     }
 
     //EFFECTS: returns the cost of the case as a int

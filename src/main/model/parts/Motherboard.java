@@ -3,9 +3,8 @@ package model.parts;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Motherboard implements Parts {
+public class Motherboard extends Parts {
 
-    private String model;
     private int cost;
     private int ramSlots;
     private int gpuSlots;
@@ -16,17 +15,12 @@ public class Motherboard implements Parts {
     //creates an a motherboard with a certain characteristics
     //(To be added: a database with all different models having different specs)
     public Motherboard(String model) {
-        this.model = model;
+        super(model);
         cost = 100;
         ramSlots = 2;
         gpuSlots = 2;
         maxMemory = 196;
         String[] compatibility = {"DDRX4", "DDRX5"};
-    }
-
-    //EFFECTS: returns the model as a string
-    public String getModel() {
-        return model;
     }
 
     //EFFECTS: returns the cost of the motherboard as a int

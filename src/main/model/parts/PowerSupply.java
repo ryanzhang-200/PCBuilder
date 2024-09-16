@@ -1,8 +1,7 @@
 package model.parts;
 
-public class PowerSupply implements Parts {
+public class PowerSupply extends Parts {
 
-    private String model;
     private int cost;
     private int power;
 
@@ -10,14 +9,9 @@ public class PowerSupply implements Parts {
     //creates an a power supply with a certain characteristics
     //(To be added: a database with all different models having different specs)
     public PowerSupply(String model) {
-        this.model = model;
+        super(model);
         cost = 100;
         power = 50;
-    }
-    
-    //EFFECTS: returns the model as a string
-    public String getModel() {
-        return model;
     }
 
     //EFFECTS: returns the cost of the power supply as a int

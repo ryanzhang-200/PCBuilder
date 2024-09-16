@@ -1,8 +1,7 @@
 package model.parts;
 
-public class Monitor implements Parts {
+public class Monitor extends Parts {
 
-    private String model;
     private int cost;
     private int screenSize;
     private String resolution;
@@ -12,16 +11,11 @@ public class Monitor implements Parts {
     //creates an a monitor with a certain characteristics
     //(To be added: a database with all different models having different specs)
     public Monitor(String model) {
-        this.model = model;
+        super(model);
         cost = 150;
         screenSize = 27;
         resolution = "1920x1080";
         refreshRate = 240;
-    }
-
-    //EFFECTS: returns the model as a string
-    public String getModel() {
-        return model;
     }
 
     //EFFECTS: returns the cost of each Monitor as a int
